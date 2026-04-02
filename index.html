@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>StandardBox — Controle e gestão</title>
+<title>StandardBox — Bearon Suplementos</title>
 <meta name="theme-color" content="#0a0a0a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>
-/* ===== TEMA BOX — CLARO (Branco/Azul/Cinza) ===== */
+/* ===== TEMA BEARON — DARK (Preto/Cinza/Dourado) ===== */
 :root {
-  --bg:        #f8f9ff;
-  --bg2:       #e8eaff;
-  --card:      #ffffff;
-  --card2:     #f0f1ff;
-  --border:    #d0d5e0;
-  --text:      #1a1a2e;
-  --text2:     #4a5568;
-  --gold:      #3182ce;
-  --gold2:     #4299e1;
+  --bg:        #0d0d0d;
+  --bg2:       #161616;
+  --card:      #1a1a1a;
+  --card2:     #222222;
+  --border:    #2e2e2e;
+  --text:      #f0f0f0;
+  --text2:     #a0a0a0;
+  --gold:      #c9a84c;
+  --gold2:     #e6c86e;
   --danger:    #e05252;
   --success:   #3dbd7d;
   --warning:   #e8a838;
@@ -126,7 +126,7 @@ tr:hover td { background: var(--card2); }
   <div class="modal-box">
     <div class="login-logo">
       <h1>📦 StandardBox</h1>
-      <p>Controle e gestão</p>
+      <p>Bearon Suplementos — Montes Claros MG</p>
     </div>
     <div class="input-group">
       <label>Usuário</label>
@@ -138,7 +138,7 @@ tr:hover td { background: var(--card2); }
     </div>
     <button class="btn-primary" onclick="fazerLogin()">Entrar no sistema</button>
     <div class="divider"></div>
-    <p style="text-align:center;font-size:12px;color:var(--text2)">Para se cadastrar, faça contato com o administrador</p>
+    <p style="text-align:center;font-size:12px;color:var(--text2)">bruno/1234 &nbsp;|&nbsp; talles/1234 &nbsp;|&nbsp; maria/1234</p>
   </div>
 </div>
 
@@ -184,21 +184,107 @@ try {
 // ===== BANCO DE DADOS COMPLETO — 78 PRODUTOS =====
 const DB_INICIAL = {
   config: {
-    nomeLoja: 'STANDARD',
+    nomeLoja: '🐻 Bearon Suplementos - Montes Claros MG',
     versao: '2.0',
     dataInicio: new Date().toISOString().split('T')[0]
   },
   usuarios: [
-    {id:1,nome:'Bruno Duarte',usuario:'bruno',senha:'bruno1234bearon',perfil:'gestor',ativo:true,limiteDesconto:100},
-    {id:2,nome:'Talles',usuario:'talles',senha:'talles1234bearon',perfil:'gestor',ativo:true,limiteDesconto:100}
+    {id:1,nome:'Maria Gestora',usuario:'maria',senha:'maria1234bearon',perfil:'gestor',ativo:true,limiteDesconto:100},
+    {id:2,nome:'João Funcionário',usuario:'joao',senha:'joao1234bearon',perfil:'funcionario',ativo:true,limiteDesconto:15},
+    {id:3,nome:'Ana Funcionária',usuario:'ana',senha:'ana1234bearon',perfil:'funcionario',ativo:true,limiteDesconto:10},
+    {id:4,nome:'Bruno Duarte',usuario:'bruno',senha:'bruno1234bearon',perfil:'gestor',ativo:true,limiteDesconto:100},
+    {id:5,nome:'Talles',usuario:'talles',senha:'talles1234bearon',perfil:'gestor',ativo:true,limiteDesconto:100}
   ],
   produtos: [
-   
+    // === BEARON (13 produtos) ===
+    {codigo:'B001',nome:'Whey Protein Churros 900g',marca:'Bearon',precoCusto:89.90,precoVenda:129.90,estoqueAtual:25,estoqueMin:5,unidade:'und',categoria:'Proteína',descricao:'Whey protein concentrado sabor churros com canela.',beneficios:'Ganho muscular, recuperação pós-treino, alto teor proteico.',observacoes:'Misturar 30g com 200ml de água ou leite.'},
+    {codigo:'B002',nome:'Whey Protein Chocolate 900g',marca:'Bearon',precoCusto:87.50,precoVenda:127.90,estoqueAtual:18,estoqueMin:4,unidade:'und',categoria:'Proteína',descricao:'Whey concentrado sabor chocolate belga.',beneficios:'Hipertrofia, recuperação muscular rápida.',observacoes:'1 dose de 30g após treino.'},
+    {codigo:'B003',nome:'Creatina Monohidratada 300g',marca:'Bearon',precoCusto:42.90,precoVenda:67.90,estoqueAtual:35,estoqueMin:8,unidade:'und',categoria:'Creatina',descricao:'Creatina monohidratada pura sem aditivos.',beneficios:'Força, potência, volume muscular.',observacoes:'5g ao dia com bastante água.'},
+    {codigo:'B004',nome:'BCAA 300g',marca:'Bearon',precoCusto:58.90,precoVenda:88.90,estoqueAtual:22,estoqueMin:6,unidade:'und',categoria:'Aminoácidos',descricao:'Blend de aminoácidos ramificados 2:1:1.',beneficios:'Anticatabólico, recuperação muscular.',observacoes:'10g antes e após treino.'},
+    {codigo:'B005',nome:'Pré-Treino Energy 300g',marca:'Bearon',precoCusto:76.50,precoVenda:115.90,estoqueAtual:15,estoqueMin:3,unidade:'und',categoria:'Pré-Treino',descricao:'Pré-treino com cafeína, beta-alanina e arginina.',beneficios:'Energia, foco, pump muscular.',observacoes:'1 dose 30min antes do treino. Não tomar à noite.'},
+    {codigo:'B006',nome:'Whey Zero Lactose 900g',marca:'Bearon',precoCusto:98.90,precoVenda:149.90,estoqueAtual:12,estoqueMin:3,unidade:'und',categoria:'Proteína',descricao:'Whey isolado sem lactose, ideal para intolerantes.',beneficios:'Recuperação rápida, sem desconforto digestivo.',observacoes:'1 dose pós-treino.'},
+    {codigo:'B007',nome:'Glutamina 300g',marca:'Bearon',precoCusto:39.90,precoVenda:64.90,estoqueAtual:28,estoqueMin:7,unidade:'und',categoria:'Aminoácidos',descricao:'L-Glutamina pura para recuperação e imunidade.',beneficios:'Recuperação muscular, saúde intestinal, imunidade.',observacoes:'5g ao dia.'},
+    {codigo:'B008',nome:'Termogênico Fat Burn 60caps',marca:'Bearon',precoCusto:48.90,precoVenda:79.90,estoqueAtual:40,estoqueMin:10,unidade:'und',categoria:'Termogênico',descricao:'Cápsula termogênica com cafeína e extrato de chá verde.',beneficios:'Queima de gordura, aceleração metabólica, energia.',observacoes:'1 cáps antes do treino. Evitar após 17h.'},
+    {codigo:'B009',nome:'Multivitamínico 60 tabs',marca:'Bearon',precoCusto:29.90,precoVenda:49.90,estoqueAtual:55,estoqueMin:12,unidade:'und',categoria:'Vitaminas',descricao:'Complexo vitamínico completo com vitaminas e minerais.',beneficios:'Saúde geral, energia, imunidade.',observacoes:'1 tablet ao dia com a refeição.'},
+    {codigo:'B010',nome:'Ômega 3 60 caps',marca:'Bearon',precoCusto:35.90,precoVenda:59.90,estoqueAtual:32,estoqueMin:8,unidade:'und',categoria:'Saúde',descricao:'Óleo de peixe rico em EPA e DHA.',beneficios:'Saúde cardiovascular, articulações, memória.',observacoes:'2 cáps ao dia nas refeições.'},
+    {codigo:'B011',nome:'Hipercalórico 3kg',marca:'Bearon',precoCusto:119.90,precoVenda:179.90,estoqueAtual:10,estoqueMin:3,unidade:'und',categoria:'Hipercalórico',descricao:'Massa hipercalórica com carboidratos e proteínas.',beneficios:'Ganho de massa, caloria extra para hardgainers.',observacoes:'2 doses ao dia fora do treino.'},
+    {codigo:'B012',nome:'Albumina 500g',marca:'Bearon',precoCusto:49.90,precoVenda:79.90,estoqueAtual:20,estoqueMin:5,unidade:'und',categoria:'Proteína',descricao:'Proteína de clara de ovo de liberação lenta.',beneficios:'Proteína noturna, anti-catabolismo.',observacoes:'1 dose antes de dormir.'},
+    {codigo:'B013',nome:'ZMA 90 caps',marca:'Bearon',precoCusto:39.90,precoVenda:64.90,estoqueAtual:18,estoqueMin:5,unidade:'und',categoria:'Vitaminas',descricao:'Zinco, magnésio e vitamina B6.',beneficios:'Qualidade do sono, recuperação, testosterona.',observacoes:'3 cáps em jejum antes de dormir.'},
+    // === GROWTH SUPLEMENTOS (13 produtos) ===
+    {codigo:'G001',nome:'Whey 100% Pure 900g',marca:'Growth',precoCusto:92.90,precoVenda:139.90,estoqueAtual:20,estoqueMin:5,unidade:'und',categoria:'Proteína',descricao:'Whey protein concentrado de alta qualidade.',beneficios:'Hipertrofia, recuperação muscular.',observacoes:'30g pós-treino.'},
+    {codigo:'G002',nome:'Creatina Creapure 300g',marca:'Growth',precoCusto:49.90,precoVenda:79.90,estoqueAtual:38,estoqueMin:10,unidade:'und',categoria:'Creatina',descricao:'Creatina certificada Creapure de origem alemã.',beneficios:'Força máxima, ganho de volume.',observacoes:'5g ao dia.'},
+    {codigo:'G003',nome:'BCAA Powder 300g',marca:'Growth',precoCusto:62.90,precoVenda:94.90,estoqueAtual:25,estoqueMin:6,unidade:'und',categoria:'Aminoácidos',descricao:'BCAA em pó com leucina, isoleucina e valina.',beneficios:'Anticatabólico, recuperação.',observacoes:'10g antes e após treino.'},
+    {codigo:'G004',nome:'Pré-Treino Essential 300g',marca:'Growth',precoCusto:69.90,precoVenda:109.90,estoqueAtual:18,estoqueMin:4,unidade:'und',categoria:'Pré-Treino',descricao:'Pré-treino com cafeína e vitaminas do complexo B.',beneficios:'Energia, foco e resistência.',observacoes:'1 dose 30min antes do treino.'},
+    {codigo:'G005',nome:'Glutamina 300g',marca:'Growth',precoCusto:37.90,precoVenda:62.90,estoqueAtual:30,estoqueMin:7,unidade:'und',categoria:'Aminoácidos',descricao:'L-Glutamina pura.',beneficios:'Recuperação, saúde intestinal.',observacoes:'5g ao dia.'},
+    {codigo:'G006',nome:'Hipercalórico Mass Titanium 3kg',marca:'Growth',precoCusto:109.90,precoVenda:169.90,estoqueAtual:8,estoqueMin:2,unidade:'und',categoria:'Hipercalórico',descricao:'Hipercalórico com blend de carboidratos e proteínas.',beneficios:'Ganho de massa rápido.',observacoes:'2 doses ao dia.'},
+    {codigo:'G007',nome:'Termogênico 60 caps',marca:'Growth',precoCusto:44.90,precoVenda:74.90,estoqueAtual:35,estoqueMin:8,unidade:'und',categoria:'Termogênico',descricao:'Termogênico com extrato de canela e gengibre.',beneficios:'Metabolismo acelerado, queima de gordura.',observacoes:'1 cáps antes do treino.'},
+    {codigo:'G008',nome:'Multivitamínico 60 tabs',marca:'Growth',precoCusto:27.90,precoVenda:47.90,estoqueAtual:42,estoqueMin:10,unidade:'und',categoria:'Vitaminas',descricao:'Complexo vitamínico completo.',beneficios:'Saúde, energia, imunidade.',observacoes:'1 tablet ao dia.'},
+    {codigo:'G009',nome:'Ômega 3 60 caps',marca:'Growth',precoCusto:32.90,precoVenda:54.90,estoqueAtual:28,estoqueMin:7,unidade:'und',categoria:'Saúde',descricao:'Ômega 3 com EPA e DHA.',beneficios:'Coração, articulações, cérebro.',observacoes:'2 cáps ao dia.'},
+    {codigo:'G010',nome:'Albumina 500g',marca:'Growth',precoCusto:45.90,precoVenda:72.90,estoqueAtual:16,estoqueMin:4,unidade:'und',categoria:'Proteína',descricao:'Proteína de ovo de liberação lenta.',beneficios:'Anticatabólico noturno.',observacoes:'1 dose antes de dormir.'},
+    {codigo:'G011',nome:'ZMA 90 caps',marca:'Growth',precoCusto:36.90,precoVenda:59.90,estoqueAtual:22,estoqueMin:6,unidade:'und',categoria:'Vitaminas',descricao:'ZMA Growth com zinco, magnésio e B6.',beneficios:'Sono, recuperação.',observacoes:'3 cáps em jejum.'},
+    {codigo:'G012',nome:'Colágeno Hidrolisado 300g',marca:'Growth',precoCusto:38.90,precoVenda:62.90,estoqueAtual:20,estoqueMin:5,unidade:'und',categoria:'Saúde',descricao:'Colágeno tipo 1 e 3 hidrolisado.',beneficios:'Articulações, pele, cabelo.',observacoes:'10g ao dia com vitamina C.'},
+    {codigo:'G013',nome:'Barra de Proteína cx 12un',marca:'Growth',precoCusto:55.90,precoVenda:89.90,estoqueAtual:14,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra proteica com 20g de proteína.',beneficios:'Lanche prático e proteico.',observacoes:'1 unidade ao lanche.'},
+    // === INTEGRALMEDICA (13 produtos) ===
+    {codigo:'I001',nome:'Whey 100% Pure 900g',marca:'Integralmedica',precoCusto:88.90,precoVenda:132.90,estoqueAtual:22,estoqueMin:5,unidade:'und',categoria:'Proteína',descricao:'Whey concentrado com alta pureza proteica.',beneficios:'Ganho de massa, recuperação.',observacoes:'30g pós-treino.'},
+    {codigo:'I002',nome:'Creatina Hardcore 300g',marca:'Integralmedica',precoCusto:44.90,precoVenda:69.90,estoqueAtual:45,estoqueMin:12,unidade:'und',categoria:'Creatina',descricao:'Creatina monohidratada com qualidade premium.',beneficios:'Força, explosão, volume.',observacoes:'5g ao dia.'},
+    {codigo:'I003',nome:'BCAA 2400mg 100 tabs',marca:'Integralmedica',precoCusto:55.90,precoVenda:84.90,estoqueAtual:30,estoqueMin:7,unidade:'und',categoria:'Aminoácidos',descricao:'BCAA em tablete de fácil ingestão.',beneficios:'Anticatabólico, recuperação.',observacoes:'4 tabletes antes e após treino.'},
+    {codigo:'I004',nome:'Pré-Treino Devastate 300g',marca:'Integralmedica',precoCusto:79.90,precoVenda:119.90,estoqueAtual:14,estoqueMin:3,unidade:'und',categoria:'Pré-Treino',descricao:'Pré-treino avançado com nitrato e cafeína.',beneficios:'Máximo pump, foco total, resistência.',observacoes:'1 dose 30min antes. Não usar para iniciantes.'},
+    {codigo:'I005',nome:'Glutamina 300g',marca:'Integralmedica',precoCusto:36.90,precoVenda:61.90,estoqueAtual:26,estoqueMin:6,unidade:'und',categoria:'Aminoácidos',descricao:'Glutamina pura Integralmedica.',beneficios:'Recuperação, imunidade.',observacoes:'5g ao dia.'},
+    {codigo:'I006',nome:'Hipercalórico 3kg',marca:'Integralmedica',precoCusto:112.90,precoVenda:172.90,estoqueAtual:7,estoqueMin:2,unidade:'und',categoria:'Hipercalórico',descricao:'Hipercalórico com carbo e proteína para hardgainers.',beneficios:'Ganho de peso e massa.',observacoes:'2 doses por dia.'},
+    {codigo:'I007',nome:'Termogênico 60 caps',marca:'Integralmedica',precoCusto:46.90,precoVenda:76.90,estoqueAtual:32,estoqueMin:8,unidade:'und',categoria:'Termogênico',descricao:'Termogênico com grão de café verde.',beneficios:'Queima de gordura, metabolismo.',observacoes:'1 cáps antes do treino.'},
+    {codigo:'I008',nome:'Multivitamínico 60 tabs',marca:'Integralmedica',precoCusto:28.90,precoVenda:48.90,estoqueAtual:38,estoqueMin:10,unidade:'und',categoria:'Vitaminas',descricao:'Vitaminas e minerais completos.',beneficios:'Saúde geral, energia.',observacoes:'1 tablet ao dia.'},
+    {codigo:'I009',nome:'Ômega 3 60 caps',marca:'Integralmedica',precoCusto:33.90,precoVenda:55.90,estoqueAtual:24,estoqueMin:6,unidade:'und',categoria:'Saúde',descricao:'Cápsula de ômega 3 com alto teor de EPA/DHA.',beneficios:'Coração, articulações.',observacoes:'2 cáps ao dia.'},
+    {codigo:'I010',nome:'Albumina 500g',marca:'Integralmedica',precoCusto:47.90,precoVenda:75.90,estoqueAtual:18,estoqueMin:4,unidade:'und',categoria:'Proteína',descricao:'Clara de ovo desidratada.',beneficios:'Proteína lenta para o noturno.',observacoes:'Antes de dormir.'},
+    {codigo:'I011',nome:'ZMA 90 caps',marca:'Integralmedica',precoCusto:37.90,precoVenda:61.90,estoqueAtual:20,estoqueMin:5,unidade:'und',categoria:'Vitaminas',descricao:'Zinco, magnésio e B6.',beneficios:'Sono, recuperação, hormônios.',observacoes:'3 cáps em jejum.'},
+    {codigo:'I012',nome:'Colágeno 300g',marca:'Integralmedica',precoCusto:36.90,precoVenda:59.90,estoqueAtual:17,estoqueMin:4,unidade:'und',categoria:'Saúde',descricao:'Colágeno hidrolisado Integralmedica.',beneficios:'Articulações, pele, ossos.',observacoes:'10g ao dia.'},
+    {codigo:'I013',nome:'Barra Proteica cx 12un',marca:'Integralmedica',precoCusto:52.90,precoVenda:84.90,estoqueAtual:12,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra proteica com cobertura de chocolate.',beneficios:'Snack proteico, energia.',observacoes:'1 unidade ao lanche.'},
+    // === HERO NUTRITION (13 produtos) ===
+    {codigo:'H001',nome:'Psycho Whey 900g',marca:'Hero',precoCusto:95.90,precoVenda:145.90,estoqueAtual:16,estoqueMin:4,unidade:'und',categoria:'Proteína',descricao:'Whey protein premium da Hero Nutrition.',beneficios:'Hipertrofia acelerada, recuperação.',observacoes:'30g pós-treino.'},
+    {codigo:'H002',nome:'Pré-Treino Psycho 300g',marca:'Hero',precoCusto:82.90,precoVenda:124.90,estoqueAtual:14,estoqueMin:3,unidade:'und',categoria:'Pré-Treino',descricao:'Pré-treino intenso com beta-alanina e cafeína anidra.',beneficios:'Energia extrema, foco, pump.',observacoes:'1 dose 30min antes. Iniciantes usar meia dose.'},
+    {codigo:'H003',nome:'Creatina 300g',marca:'Hero',precoCusto:45.90,precoVenda:72.90,estoqueAtual:28,estoqueMin:7,unidade:'und',categoria:'Creatina',descricao:'Creatina monohidratada Hero.',beneficios:'Força, potência.',observacoes:'5g ao dia.'},
+    {codigo:'H004',nome:'BCAA Hero 300g',marca:'Hero',precoCusto:60.90,precoVenda:91.90,estoqueAtual:20,estoqueMin:5,unidade:'und',categoria:'Aminoácidos',descricao:'BCAA Hero Nutrition em pó.',beneficios:'Proteção muscular, recuperação.',observacoes:'10g antes e após treino.'},
+    {codigo:'H005',nome:'Glutamina 300g',marca:'Hero',precoCusto:38.90,precoVenda:63.90,estoqueAtual:22,estoqueMin:6,unidade:'und',categoria:'Aminoácidos',descricao:'Glutamina Hero pura.',beneficios:'Recuperação, imunidade.',observacoes:'5g ao dia.'},
+    {codigo:'H006',nome:'Hipercalórico 3kg',marca:'Hero',precoCusto:115.90,precoVenda:175.90,estoqueAtual:6,estoqueMin:2,unidade:'und',categoria:'Hipercalórico',descricao:'Hipercalórico Hero para ganho de massa.',beneficios:'Calorias e proteínas para ganho rápido.',observacoes:'2 doses ao dia fora do treino.'},
+    {codigo:'H007',nome:'Termogênico 60 caps',marca:'Hero',precoCusto:50.90,precoVenda:81.90,estoqueAtual:30,estoqueMin:8,unidade:'und',categoria:'Termogênico',descricao:'Termogênico Hero com cafeína e capsaicina.',beneficios:'Queima de gordura localizada.',observacoes:'1 cáps antes do treino.'},
+    {codigo:'H008',nome:'Multivitamínico 60 tabs',marca:'Hero',precoCusto:30.90,precoVenda:51.90,estoqueAtual:35,estoqueMin:9,unidade:'und',categoria:'Vitaminas',descricao:'Complexo vitamínico Hero completo.',beneficios:'Vitalidade, saúde, energia.',observacoes:'1 tablet ao dia.'},
+    {codigo:'H009',nome:'Ômega 3 60 caps',marca:'Hero',precoCusto:34.90,precoVenda:57.90,estoqueAtual:25,estoqueMin:6,unidade:'und',categoria:'Saúde',descricao:'Ômega 3 Hero com EPA e DHA.',beneficios:'Saúde cardiovascular.',observacoes:'2 cáps ao dia.'},
+    {codigo:'H010',nome:'Albumina 500g',marca:'Hero',precoCusto:48.90,precoVenda:76.90,estoqueAtual:14,estoqueMin:3,unidade:'und',categoria:'Proteína',descricao:'Albumina Hero Nutrition.',beneficios:'Proteína de liberação lenta.',observacoes:'1 dose antes de dormir.'},
+    {codigo:'H011',nome:'ZMA 90 caps',marca:'Hero',precoCusto:38.90,precoVenda:62.90,estoqueAtual:19,estoqueMin:5,unidade:'und',categoria:'Vitaminas',descricao:'ZMA Hero com zinco, magnésio e B6.',beneficios:'Sono, testosterona, recuperação.',observacoes:'3 cáps antes de dormir.'},
+    {codigo:'H012',nome:'Colágeno 300g',marca:'Hero',precoCusto:37.90,precoVenda:61.90,estoqueAtual:16,estoqueMin:4,unidade:'und',categoria:'Saúde',descricao:'Colágeno hidrolisado Hero.',beneficios:'Articulações, pele.',observacoes:'10g ao dia com vitamina C.'},
+    {codigo:'H013',nome:'Barra Proteica cx 12un',marca:'Hero',precoCusto:54.90,precoVenda:87.90,estoqueAtual:10,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra Hero com 20g de proteína.',beneficios:'Lanche proteico prático.',observacoes:'1 unidade ao lanche.'},
+    // === NEW MILLEN (13 produtos) ===
+    {codigo:'N001',nome:'Whey Dulce de Leche 900g',marca:'New Millen',precoCusto:85.90,precoVenda:128.90,estoqueAtual:19,estoqueMin:5,unidade:'und',categoria:'Proteína',descricao:'Whey New Millen sabor doce de leite.',beneficios:'Hipertrofia, sabor exclusivo.',observacoes:'30g pós-treino.'},
+    {codigo:'N002',nome:'Creatina 300g',marca:'New Millen',precoCusto:43.90,precoVenda:68.90,estoqueAtual:30,estoqueMin:7,unidade:'und',categoria:'Creatina',descricao:'Creatina New Millen monohidratada.',beneficios:'Força e explosão.',observacoes:'5g ao dia.'},
+    {codigo:'N003',nome:'BCAA 300g',marca:'New Millen',precoCusto:59.90,precoVenda:89.90,estoqueAtual:20,estoqueMin:5,unidade:'und',categoria:'Aminoácidos',descricao:'BCAA New Millen em pó sabor limão.',beneficios:'Anticatabólico, recuperação.',observacoes:'10g antes e após treino.'},
+    {codigo:'N004',nome:'Pré-Treino 300g',marca:'New Millen',precoCusto:72.90,precoVenda:112.90,estoqueAtual:14, estoqueMin:3,unidade:'und',categoria:'Pré-Treino',descricao:'Pré-treino New Millen com cafeína e arginina.',beneficios:'Energia e pump.',observacoes:'1 dose pré-treino.'},
+    {codigo:'N005',nome:'Glutamina 300g',marca:'New Millen',precoCusto:38.90,precoVenda:63.90,estoqueAtual:24,estoqueMin:6,unidade:'und',categoria:'Aminoácidos',descricao:'Glutamina New Millen.',beneficios:'Recuperação, imunidade.',observacoes:'5g ao dia.'},
+    {codigo:'N006',nome:'Hipercalórico 3kg',marca:'New Millen',precoCusto:110.90,precoVenda:170.90,estoqueAtual:8,estoqueMin:2,unidade:'und',categoria:'Hipercalórico',descricao:'Hipercalórico New Millen com carboidratos e proteínas.',beneficios:'Ganho de massa, caloria extra.',observacoes:'2 doses ao dia.'},
+    {codigo:'N007',nome:'Termogênico 60 caps',marca:'New Millen',precoCusto:46.90,precoVenda:76.90,estoqueAtual:28,estoqueMin:7,unidade:'und',categoria:'Termogênico',descricao:'Termogênico New Millen com extrato de guaraná.',beneficios:'Queima de gordura, energia.',observacoes:'1 cáps antes do treino.'},
+    {codigo:'N008',nome:'Multivitamínico 60 tabs',marca:'New Millen',precoCusto:28.90,precoVenda:48.90,estoqueAtual:40,estoqueMin:10,unidade:'und',categoria:'Vitaminas',descricao:'Multivitamínico New Millen.',beneficios:'Saúde geral.',observacoes:'1 tablet ao dia.'},
+    {codigo:'N009',nome:'Ômega 3 60 caps',marca:'New Millen',precoCusto:33.90,precoVenda:55.90,estoqueAtual:22,estoqueMin:5,unidade:'und',categoria:'Saúde',descricao:'Ômega 3 New Millen.',beneficios:'Coração e articulações.',observacoes:'2 cáps ao dia.'},
+    {codigo:'N010',nome:'Albumina 500g',marca:'New Millen',precoCusto:46.90,precoVenda:74.90,estoqueAtual:16,estoqueMin:4,unidade:'und',categoria:'Proteína',descricao:'Albumina New Millen.',beneficios:'Proteína noturna.',observacoes:'1 dose antes de dormir.'},
+    {codigo:'N011',nome:'ZMA 90 caps',marca:'New Millen',precoCusto:37.90,precoVenda:61.90,estoqueAtual:18,estoqueMin:5,unidade:'und',categoria:'Vitaminas',descricao:'ZMA New Millen.',beneficios:'Sono, hormônios.',observacoes:'3 cáps antes de dormir.'},
+    {codigo:'N012',nome:'Colágeno 300g',marca:'New Millen',precoCusto:36.90,precoVenda:59.90,estoqueAtual:15,estoqueMin:4,unidade:'und',categoria:'Saúde',descricao:'Colágeno hidrolisado New Millen.',beneficios:'Articulações, pele.',observacoes:'10g ao dia.'},
+    {codigo:'N013',nome:'Barra Proteica cx 12un',marca:'New Millen',precoCusto:53.90,precoVenda:85.90,estoqueAtual:11,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra New Millen com amendoim.',beneficios:'Lanche prático e proteico.',observacoes:'1 unidade ao lanche.'},
+    // === ADAPTOGEN (13 produtos) ===
+    {codigo:'A001',nome:'Whey Adaptogen 900g',marca:'Adaptogen',precoCusto:91.90,precoVenda:137.90,estoqueAtual:23,estoqueMin:6,unidade:'und',categoria:'Proteína',descricao:'Whey concentrado Adaptogen Science.',beneficios:'Ganho muscular, recuperação.',observacoes:'30g pós-treino.'},
+    {codigo:'A002',nome:'Creatina 300g',marca:'Adaptogen',precoCusto:44.90,precoVenda:69.90,estoqueAtual:32,estoqueMin:8,unidade:'und',categoria:'Creatina',descricao:'Creatina Adaptogen Science.',beneficios:'Força e volume muscular.',observacoes:'5g ao dia.'},
+    {codigo:'A003',nome:'BCAA 300g',marca:'Adaptogen',precoCusto:61.90,precoVenda:92.90,estoqueAtual:24,estoqueMin:6,unidade:'und',categoria:'Aminoácidos',descricao:'BCAA Adaptogen 2:1:1.',beneficios:'Proteção anticatabólica.',observacoes:'10g antes e após treino.'},
+    {codigo:'A004',nome:'Pré-Treino 300g',marca:'Adaptogen',precoCusto:74.90,precoVenda:114.90,estoqueAtual:16,estoqueMin:4,unidade:'und',categoria:'Pré-Treino',descricao:'Pré-treino Adaptogen com cafeína e L-arginina.',beneficios:'Foco e performance.',observacoes:'1 dose 30min antes.'},
+    {codigo:'A005',nome:'Glutamina 300g',marca:'Adaptogen',precoCusto:39.90,precoVenda:64.90,estoqueAtual:20,estoqueMin:5,unidade:'und',categoria:'Aminoácidos',descricao:'Glutamina Adaptogen pura.',beneficios:'Recuperação, imunidade.',observacoes:'5g ao dia.'},
+    {codigo:'A006',nome:'Hipercalórico 3kg',marca:'Adaptogen',precoCusto:113.90,precoVenda:173.90,estoqueAtual:7,estoqueMin:2,unidade:'und',categoria:'Hipercalórico',descricao:'Hipercalórico Adaptogen para ganho de massa.',beneficios:'Calorias e macros para crescer.',observacoes:'2 doses ao dia.'},
+    {codigo:'A007',nome:'Termogênico 60 caps',marca:'Adaptogen',precoCusto:47.90,precoVenda:77.90,estoqueAtual:28,estoqueMin:7,unidade:'und',categoria:'Termogênico',descricao:'Termogênico Adaptogen com chá verde.',beneficios:'Queima de gordura.',observacoes:'1 cáps antes do treino.'},
+    {codigo:'A008',nome:'Multivitamínico 60 tabs',marca:'Adaptogen',precoCusto:29.90,precoVenda:49.90,estoqueAtual:36,estoqueMin:9,unidade:'und',categoria:'Vitaminas',descricao:'Multivitamínico Adaptogen.',beneficios:'Vitaminas, minerais, energia.',observacoes:'1 tablet ao dia.'},
+    {codigo:'A009',nome:'Ômega 3 60 caps',marca:'Adaptogen',precoCusto:34.90,precoVenda:57.90,estoqueAtual:24,estoqueMin:6,unidade:'und',categoria:'Saúde',descricao:'Ômega 3 Adaptogen.',beneficios:'Saúde cardiovascular.',observacoes:'2 cáps ao dia.'},
+    {codigo:'A010',nome:'Albumina 500g',marca:'Adaptogen',precoCusto:47.90,precoVenda:75.90,estoqueAtual:15,estoqueMin:4,unidade:'und',categoria:'Proteína',descricao:'Albumina Adaptogen Science.',beneficios:'Proteína de lenta absorção.',observacoes:'1 dose antes de dormir.'},
+    {codigo:'A011',nome:'ZMA 90 caps',marca:'Adaptogen',precoCusto:38.90,precoVenda:62.90,estoqueAtual:17,estoqueMin:4,unidade:'und',categoria:'Vitaminas',descricao:'ZMA Adaptogen Science.',beneficios:'Sono, recuperação.',observacoes:'3 cáps antes de dormir.'},
+    {codigo:'A012',nome:'Colágeno 300g',marca:'Adaptogen',precoCusto:37.90,precoVenda:61.90,estoqueAtual:14,estoqueMin:3,unidade:'und',categoria:'Saúde',descricao:'Colágeno Adaptogen hidrolisado.',beneficios:'Articulações, pele.',observacoes:'10g ao dia.'},
+    {codigo:'A013',nome:'Barra Proteica cx 12un',marca:'Adaptogen',precoCusto:53.90,precoVenda:85.90,estoqueAtual:9,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra proteica Adaptogen.',beneficios:'Lanche saudável e proteico.',observacoes:'1 unidade ao lanche.'}
   ],
   vendas: [],
   caixa: { dia: new Date().toISOString().split('T')[0], entradas: 0, saidas: 0 },
   logs: [],
-  proximoId: { produto: 0, venda: 0, usuario: 2 }
+  proximoId: { produto: 79, venda: 1, usuario: 6 }
 };
 
 // ===== ESTADO =====
@@ -217,46 +303,64 @@ window.DB = DB;
 // ===== PERSISTÊNCIA =====
 function salvar() { salvarCompleto(); } // alias de compatibilidade
 
+function aplicarDados(data) {
+  if (!data) return;
+  if (data.vendas)    DB.vendas    = data.vendas;
+  if (data.caixa)     DB.caixa     = data.caixa;
+  if (data.logs)      DB.logs      = data.logs;
+  if (data.proximoId) DB.proximoId = data.proximoId;
+  if (data.produtos && data.produtos.length > 0) DB.produtos = data.produtos;
+  if (data.usuariosExtras && data.usuariosExtras.length > 0) {
+    const idsBase = [1, 2, 3, 4, 5];
+    data.usuariosExtras.forEach(u => {
+      if (!idsBase.includes(u.id) && !DB.usuarios.find(x => x.id === u.id)) {
+        DB.usuarios.push(u);
+      }
+    });
+  }
+  normalizarSenhas();
+}
+
 function carregar() {
+  // 1) Carrega localStorage imediatamente (sem esperar rede)
+  try {
+    const local = localStorage.getItem('standardbox_dados');
+    if (local) {
+      aplicarDados(JSON.parse(local));
+      console.log('✅ localStorage carregado:', DB.produtos.length, 'produtos,', DB.vendas.length, 'vendas');
+    }
+  } catch(e) { console.log('Erro localStorage:', e); }
+
+  // 2) Tenta Firebase em paralelo — se tiver dados mais recentes, atualiza
   _fbCarregar().then(data => {
     if (data) {
-      // Carrega vendas, caixa, logs e produtos do Firebase (dados operacionais)
-      if (data.vendas)   DB.vendas   = data.vendas;
-      if (data.caixa)    DB.caixa    = data.caixa;
-      if (data.logs)     DB.logs     = data.logs;
-      if (data.proximoId) DB.proximoId = data.proximoId;
-      // Produtos: usa os do Firebase se tiver, senão mantém os do DB_INICIAL
-      if (data.produtos && data.produtos.length > 0) DB.produtos = data.produtos;
-      // NUNCA sobrescreve usuários — sempre usa os do DB_INICIAL com senhas corretas
-      // (usuários criados pelo gestor são salvos separado abaixo)
-      if (data.usuariosExtras && data.usuariosExtras.length > 0) {
-        // Adiciona apenas usuários criados pelo gestor (não os padrão)
-        const idsBase = [1, 2, 3, 4, 5];
-        data.usuariosExtras.forEach(u => {
-          if (!idsBase.includes(u.id) && !DB.usuarios.find(x => x.id === u.id)) {
-            DB.usuarios.push(u);
-          }
-        });
-      }
-      console.log('✅ Firebase carregado:', DB.produtos.length, 'produtos,', DB.vendas.length, 'vendas');
+      aplicarDados(data);
+      // Sincroniza de volta pro localStorage com dados do Firebase
+      try { localStorage.setItem('standardbox_dados', JSON.stringify(data)); } catch(e) {}
+      console.log('✅ Firebase sincronizado:', DB.vendas.length, 'vendas');
     } else {
-      console.log('✅ Primeira execução — dados iniciais carregados');
+      console.log('✅ Firebase vazio — usando dados locais');
     }
     if (usuarioLogado) render();
+  }).catch(() => {
+    console.log('Firebase indisponível — usando localStorage');
   });
 }
 
 function salvarCompleto() {
-  // Salva tudo EXCETO os 3 usuários base (salva só os extras criados pelo gestor)
-  const extras = DB.usuarios.filter(u => u.id > 3);
-  _fbSalvar({
-    vendas:        DB.vendas,
-    caixa:         DB.caixa,
-    logs:          DB.logs,
-    produtos:      DB.produtos,
-    proximoId:     DB.proximoId,
+  const extras = DB.usuarios.filter(u => u.id > 5);
+  const dados = {
+    vendas:         DB.vendas,
+    caixa:          DB.caixa,
+    logs:           DB.logs,
+    produtos:       DB.produtos,
+    proximoId:      DB.proximoId,
     usuariosExtras: extras
-  });
+  };
+  // Salva no localStorage (primário — sempre funciona)
+  try { localStorage.setItem('standardbox_dados', JSON.stringify(dados)); } catch(e) {}
+  // Salva no Firebase (secundário — sincroniza entre dispositivos)
+  _fbSalvar(dados);
 }
 
 // ===== UTILITÁRIOS =====
@@ -289,7 +393,9 @@ function adicionarLog(acao, detalhes = {}) {
 function normalizarSenhas() {
   // Senhas fixas dos usuários padrão — sempre mantém sincronizado
   const senhasPadrao = {
-    
+    'maria':  'maria1234bearon',
+    'joao':   'joao1234bearon',
+    'ana':    'ana1234bearon',
     'bruno':  'bruno1234bearon',
     'talles': 'talles1234bearon'
   };
@@ -1140,8 +1246,9 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
   }
 
-  console.log('🚀 StandardBox Controle e gestão');
+  console.log('🚀 StandardBox Bearon Suplementos');
   console.log('✅ Total de produtos:', DB.produtos.length);
+  console.log('Login: maria/1234 (gestor) | joao/1234 | ana/1234');
 });
 
 // Re-renderizar lista de vendas após render
