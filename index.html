@@ -3,63 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>StockPro v2.0 - Bearon Suplementos</title>
-<meta name="theme-color" content="#0a0a0a">
+<title>Box | StandardBox</title>
+<meta name="theme-color" content="#2563eb">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>
-/* ===== TEMA BEARON — DARK (Preto/Cinza/Dourado) ===== */
+/* ===== TEMA STANDARDBOX — LIGHT (Branco/Azul) ===== */
 :root {
-  --bg:        #0d0d0d;
-  --bg2:       #161616;
-  --card:      #1a1a1a;
-  --card2:     #222222;
-  --border:    #2e2e2e;
-  --text:      #f0f0f0;
-  --text2:     #a0a0a0;
-  --gold:      #c9a84c;
-  --gold2:     #e6c86e;
+  --bg:        #f0f4ff;
+  --bg2:       #e8eef8;
+  --card:      #ffffff;
+  --card2:     #f1f5fd;
+  --border:    #dbeafe;
+  --text:      #1e293b;
+  --text2:     #64748b;
+  --primary:   #2563eb;
+  --primary2:  #3b82f6;
   --danger:    #e05252;
-  --success:   #3dbd7d;
-  --warning:   #e8a838;
+  --success:   #16a34a;
+  --warning:   #d97706;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background: var(--bg); min-height: 100vh; color: var(--text); }
 #app { max-width: 1400px; margin: 0 auto; padding: 20px; }
-header { background: var(--card); border: 1px solid var(--border); padding: 18px 24px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.4); margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-.logo { font-size: 22px; font-weight: 800; background: linear-gradient(135deg, var(--gold), var(--gold2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px; }
+header { background: var(--card); border: 1px solid var(--border); padding: 18px 24px; border-radius: 16px; box-shadow: 0 4px 24px rgba(37,99,235,0.08); margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.logo { font-size: 22px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--primary2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px; }
 nav { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn-nav { padding: 9px 18px; background: var(--card2); color: var(--text2); border: 1px solid var(--border); border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
-.btn-nav:hover { background: var(--gold); color: #000; border-color: var(--gold); transform: translateY(-1px); }
-.btn-nav.active { background: var(--gold); color: #000; border-color: var(--gold); }
+.btn-nav:hover { background: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-1px); }
+.btn-nav.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 16px; margin-top: 16px; }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: all 0.2s; }
-.card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.5); border-color: #3a3a3a; }
-.card h3 { color: var(--gold); margin-bottom: 14px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; box-shadow: 0 2px 12px rgba(37,99,235,0.06); transition: all 0.2s; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 4px 24px rgba(37,99,235,0.1); border-color: #bfdbfe; }
+.card h3 { color: var(--primary); margin-bottom: 14px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
 .stat { text-align: center; padding: 20px; background: var(--card2); border-radius: 12px; border: 1px solid var(--border); }
-.stat-value { font-size: 30px; font-weight: 800; color: var(--gold); }
+.stat-value { font-size: 30px; font-weight: 800; color: var(--primary); }
 .stat-label { color: var(--text2); font-weight: 500; font-size: 13px; margin-top: 4px; }
 .produto-item { display: flex; gap: 12px; padding: 12px; background: var(--card2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; align-items: center; }
-.produto-item:hover { border-color: var(--gold); }
+.produto-item:hover { border-color: var(--primary); }
 .produto-info { flex: 1; min-width: 0; }
 .produto-nome { font-weight: 600; color: var(--text); font-size: 15px; }
 .produto-dados { font-size: 13px; color: var(--text2); margin-top: 2px; }
 .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
 .badge-low { background: rgba(224,82,82,0.15); color: #ff6b6b; border: 1px solid rgba(224,82,82,0.3); }
 .badge-ok { background: rgba(61,189,125,0.15); color: #3dbd7d; border: 1px solid rgba(61,189,125,0.3); }
-.badge-marca { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
+.badge-marca { background: rgba(37,99,235,0.12); color: var(--primary); border: 1px solid rgba(37,99,235,0.25); }
 .carrinho-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); gap: 10px; }
 .total { font-size: 22px; font-weight: 800; color: var(--success); }
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); display: none; z-index: 1000; align-items: center; justify-content: center; }
-.modal-box { background: var(--card); border: 1px solid var(--border); padding: 32px; border-radius: 18px; max-width: 480px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
-.modal-box h2, .modal-box h3 { margin-bottom: 20px; color: var(--gold); }
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.5); display: none; z-index: 1000; align-items: center; justify-content: center; }
+.modal-box { background: var(--card); border: 1px solid var(--border); padding: 32px; border-radius: 18px; max-width: 480px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(37,99,235,0.15); }
+.modal-box h2, .modal-box h3 { margin-bottom: 20px; color: var(--primary); }
 .input-group { margin-bottom: 16px; }
 label { display: block; margin-bottom: 6px; font-weight: 600; color: var(--text2); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
 input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; font-size: 15px; transition: border-color 0.2s; font-family: inherit; background: var(--card2); color: var(--text); }
-input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.15); }
-input::placeholder { color: #555; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+input::placeholder { color: #94a3b8; }
 select option { background: var(--card2); color: var(--text); }
-.btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #000; padding: 14px 28px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%; transition: all 0.2s; }
-.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(201,168,76,0.35); opacity: 0.92; }
+.btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary2)); color: #fff; padding: 14px 28px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%; transition: all 0.2s; }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(37,99,235,0.35); opacity: 0.92; }
 .btn-secondary { background: var(--card2); color: var(--text2); border: 1px solid var(--border); padding: 11px 20px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; }
 .btn-secondary:hover { border-color: var(--text2); color: var(--text); }
 .btn-success { background: rgba(61,189,125,0.15); color: var(--success); border: 1px solid rgba(61,189,125,0.3); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; white-space: nowrap; }
@@ -67,32 +67,32 @@ select option { background: var(--card2); color: var(--text); }
 .btn-danger { background: rgba(224,82,82,0.15); color: var(--danger); border: 1px solid rgba(224,82,82,0.3); padding: 6px 10px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; }
 .btn-danger:hover { background: var(--danger); color: white; border-color: var(--danger); }
 .btn-warning { background: rgba(232,168,56,0.15); color: var(--warning); border: 1px solid rgba(232,168,56,0.3); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; }
-.btn-warning:hover { background: var(--warning); color: #000; border-color: var(--warning); }
-.toast { position: fixed; top: 20px; right: 20px; padding: 14px 20px; background: #1e2e26; border: 1px solid var(--success); color: var(--success); border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transform: translateX(450px); transition: transform 0.3s; z-index: 3000; font-weight: 500; max-width: 320px; }
+.btn-warning:hover { background: var(--warning); color: #fff; border-color: var(--warning); }
+.toast { position: fixed; top: 20px; right: 20px; padding: 14px 20px; background: #f0fdf4; border: 1px solid var(--success); color: var(--success); border-radius: 12px; box-shadow: 0 8px 20px rgba(37,99,235,0.12); transform: translateX(450px); transition: transform 0.3s; z-index: 3000; font-weight: 500; max-width: 320px; }
 .toast.show { transform: translateX(0); }
-.toast.error { background: #2e1e1e; border-color: var(--danger); color: var(--danger); }
+.toast.error { background: #fff1f2; border-color: var(--danger); color: var(--danger); }
 .busca-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 50px; font-size: 15px; margin-bottom: 16px; transition: border-color 0.2s; background: var(--card2); color: var(--text); }
-.busca-input:focus { outline: none; border-color: var(--gold); }
-.busca-input::placeholder { color: #555; }
+.busca-input:focus { outline: none; border-color: var(--primary); }
+.busca-input::placeholder { color: #94a3b8; }
 .filtros { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
 .filtro-btn { padding: 6px 14px; border: 1px solid var(--border); background: var(--card2); color: var(--text2); border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; }
-.filtro-btn:hover, .filtro-btn.ativo { background: var(--gold); color: #000; border-color: var(--gold); }
+.filtro-btn:hover, .filtro-btn.ativo { background: var(--primary); color: #fff; border-color: var(--primary); }
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 th { background: var(--card2); padding: 10px 14px; text-align: left; font-weight: 600; color: var(--text2); border-bottom: 1px solid var(--border); white-space: nowrap; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); }
 tr:hover td { background: var(--card2); }
 .perfil-badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-.perfil-gestor { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+.perfil-gestor { background: rgba(37,99,235,0.15); color: var(--primary); border: 1px solid rgba(37,99,235,0.3); }
 .perfil-func { background: rgba(61,189,125,0.1); color: var(--success); border: 1px solid rgba(61,189,125,0.2); }
 .alerta-box { background: rgba(224,82,82,0.08); border: 1px solid rgba(224,82,82,0.2); border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
 .progress-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; margin-top: 4px; }
 .progress-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
 .relatorio-card { background: var(--card2); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 10px; }
 .login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-.login-box { background: var(--card); border: 1px solid var(--border); padding: 45px; border-radius: 20px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); width: 100%; max-width: 400px; }
+.login-box { background: var(--card); border: 1px solid var(--border); padding: 45px; border-radius: 20px; box-shadow: 0 20px 60px rgba(37,99,235,0.15); width: 100%; max-width: 400px; }
 .login-logo { text-align: center; margin-bottom: 30px; }
-.login-logo h1 { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, var(--gold), var(--gold2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.login-logo h1 { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--primary2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .login-logo p { color: var(--text2); margin-top: 6px; font-size: 14px; }
 .divider { height: 1px; background: var(--border); margin: 20px 0; }
 @media (max-width: 768px) {
@@ -108,8 +108,8 @@ tr:hover td { background: var(--card2); }
 <div id="modal-login" class="modal-overlay" style="display:flex">
   <div class="modal-box">
     <div class="login-logo">
-      <h1>🐻 StockPro</h1>
-      <p>Bearon Suplementos — Montes Claros MG</p>
+      <h1>📦 StandardBox</h1>
+      <p>Sistema de gestão de estoque</p>
     </div>
     <div class="input-group">
       <label>Usuário</label>
@@ -120,8 +120,6 @@ tr:hover td { background: var(--card2); }
       <input id="login-pass" type="password" placeholder="Digite sua senha" autocomplete="current-password">
     </div>
     <button class="btn-primary" onclick="fazerLogin()">Entrar no sistema</button>
-    <div class="divider"></div>
-    <p style="text-align:center;font-size:12px;color:var(--text2)">bruno/1234 &nbsp;|&nbsp; talles/1234 &nbsp;|&nbsp; maria/1234</p>
   </div>
 </div>
 
@@ -167,7 +165,7 @@ try {
 // ===== BANCO DE DADOS COMPLETO — 78 PRODUTOS =====
 const DB_INICIAL = {
   config: {
-    nomeLoja: '🐻 Bearon Suplementos - Montes Claros MG',
+    nomeLoja: '📦 Box | StandardBox',
     versao: '2.0',
     dataInicio: new Date().toISOString().split('T')[0]
   },
@@ -179,95 +177,11 @@ const DB_INICIAL = {
     {id:5,nome:'Talles',usuario:'talles',senha:'talles1234bearon',perfil:'gestor',ativo:true,limiteDesconto:100}
   ],
   produtos: [
-    // === BEARON (13 produtos) ===
-    {codigo:'B001',nome:'Whey Protein Churros 900g',marca:'Bearon',precoCusto:89.90,precoVenda:129.90,estoqueAtual:25,estoqueMin:5,unidade:'un',categoria:'Proteína',descricao:'Whey protein concentrado sabor churros com canela.',beneficios:'Ganho muscular, recuperação pós-treino, alto teor proteico.',observacoes:'Misturar 30g com 200ml de água ou leite.'},
-    {codigo:'B002',nome:'Whey Protein Chocolate 900g',marca:'Bearon',precoCusto:87.50,precoVenda:127.90,estoqueAtual:18,estoqueMin:4,unidade:'un',categoria:'Proteína',descricao:'Whey concentrado sabor chocolate belga.',beneficios:'Hipertrofia, recuperação muscular rápida.',observacoes:'1 dose de 30g após treino.'},
-    {codigo:'B003',nome:'Creatina Monohidratada 300g',marca:'Bearon',precoCusto:42.90,precoVenda:67.90,estoqueAtual:35,estoqueMin:8,unidade:'un',categoria:'Creatina',descricao:'Creatina monohidratada pura sem aditivos.',beneficios:'Força, potência, volume muscular.',observacoes:'5g ao dia com bastante água.'},
-    {codigo:'B004',nome:'BCAA 300g',marca:'Bearon',precoCusto:58.90,precoVenda:88.90,estoqueAtual:22,estoqueMin:6,unidade:'un',categoria:'Aminoácidos',descricao:'Blend de aminoácidos ramificados 2:1:1.',beneficios:'Anticatabólico, recuperação muscular.',observacoes:'10g antes e após treino.'},
-    {codigo:'B005',nome:'Pré-Treino Energy 300g',marca:'Bearon',precoCusto:76.50,precoVenda:115.90,estoqueAtual:15,estoqueMin:3,unidade:'un',categoria:'Pré-Treino',descricao:'Pré-treino com cafeína, beta-alanina e arginina.',beneficios:'Energia, foco, pump muscular.',observacoes:'1 dose 30min antes do treino. Não tomar à noite.'},
-    {codigo:'B006',nome:'Whey Zero Lactose 900g',marca:'Bearon',precoCusto:98.90,precoVenda:149.90,estoqueAtual:12,estoqueMin:3,unidade:'un',categoria:'Proteína',descricao:'Whey isolado sem lactose, ideal para intolerantes.',beneficios:'Recuperação rápida, sem desconforto digestivo.',observacoes:'1 dose pós-treino.'},
-    {codigo:'B007',nome:'Glutamina 300g',marca:'Bearon',precoCusto:39.90,precoVenda:64.90,estoqueAtual:28,estoqueMin:7,unidade:'un',categoria:'Aminoácidos',descricao:'L-Glutamina pura para recuperação e imunidade.',beneficios:'Recuperação muscular, saúde intestinal, imunidade.',observacoes:'5g ao dia.'},
-    {codigo:'B008',nome:'Termogênico Fat Burn 60caps',marca:'Bearon',precoCusto:48.90,precoVenda:79.90,estoqueAtual:40,estoqueMin:10,unidade:'un',categoria:'Termogênico',descricao:'Cápsula termogênica com cafeína e extrato de chá verde.',beneficios:'Queima de gordura, aceleração metabólica, energia.',observacoes:'1 cáps antes do treino. Evitar após 17h.'},
-    {codigo:'B009',nome:'Multivitamínico 60 tabs',marca:'Bearon',precoCusto:29.90,precoVenda:49.90,estoqueAtual:55,estoqueMin:12,unidade:'un',categoria:'Vitaminas',descricao:'Complexo vitamínico completo com vitaminas e minerais.',beneficios:'Saúde geral, energia, imunidade.',observacoes:'1 tablet ao dia com a refeição.'},
-    {codigo:'B010',nome:'Ômega 3 60 caps',marca:'Bearon',precoCusto:35.90,precoVenda:59.90,estoqueAtual:32,estoqueMin:8,unidade:'un',categoria:'Saúde',descricao:'Óleo de peixe rico em EPA e DHA.',beneficios:'Saúde cardiovascular, articulações, memória.',observacoes:'2 cáps ao dia nas refeições.'},
-    {codigo:'B011',nome:'Hipercalórico 3kg',marca:'Bearon',precoCusto:119.90,precoVenda:179.90,estoqueAtual:10,estoqueMin:3,unidade:'un',categoria:'Hipercalórico',descricao:'Massa hipercalórica com carboidratos e proteínas.',beneficios:'Ganho de massa, caloria extra para hardgainers.',observacoes:'2 doses ao dia fora do treino.'},
-    {codigo:'B012',nome:'Albumina 500g',marca:'Bearon',precoCusto:49.90,precoVenda:79.90,estoqueAtual:20,estoqueMin:5,unidade:'un',categoria:'Proteína',descricao:'Proteína de clara de ovo de liberação lenta.',beneficios:'Proteína noturna, anti-catabolismo.',observacoes:'1 dose antes de dormir.'},
-    {codigo:'B013',nome:'ZMA 90 caps',marca:'Bearon',precoCusto:39.90,precoVenda:64.90,estoqueAtual:18,estoqueMin:5,unidade:'un',categoria:'Vitaminas',descricao:'Zinco, magnésio e vitamina B6.',beneficios:'Qualidade do sono, recuperação, testosterona.',observacoes:'3 cáps em jejum antes de dormir.'},
-    // === GROWTH SUPLEMENTOS (13 produtos) ===
-    {codigo:'G001',nome:'Whey 100% Pure 900g',marca:'Growth',precoCusto:92.90,precoVenda:139.90,estoqueAtual:20,estoqueMin:5,unidade:'un',categoria:'Proteína',descricao:'Whey protein concentrado de alta qualidade.',beneficios:'Hipertrofia, recuperação muscular.',observacoes:'30g pós-treino.'},
-    {codigo:'G002',nome:'Creatina Creapure 300g',marca:'Growth',precoCusto:49.90,precoVenda:79.90,estoqueAtual:38,estoqueMin:10,unidade:'un',categoria:'Creatina',descricao:'Creatina certificada Creapure de origem alemã.',beneficios:'Força máxima, ganho de volume.',observacoes:'5g ao dia.'},
-    {codigo:'G003',nome:'BCAA Powder 300g',marca:'Growth',precoCusto:62.90,precoVenda:94.90,estoqueAtual:25,estoqueMin:6,unidade:'un',categoria:'Aminoácidos',descricao:'BCAA em pó com leucina, isoleucina e valina.',beneficios:'Anticatabólico, recuperação.',observacoes:'10g antes e após treino.'},
-    {codigo:'G004',nome:'Pré-Treino Essential 300g',marca:'Growth',precoCusto:69.90,precoVenda:109.90,estoqueAtual:18,estoqueMin:4,unidade:'un',categoria:'Pré-Treino',descricao:'Pré-treino com cafeína e vitaminas do complexo B.',beneficios:'Energia, foco e resistência.',observacoes:'1 dose 30min antes do treino.'},
-    {codigo:'G005',nome:'Glutamina 300g',marca:'Growth',precoCusto:37.90,precoVenda:62.90,estoqueAtual:30,estoqueMin:7,unidade:'un',categoria:'Aminoácidos',descricao:'L-Glutamina pura.',beneficios:'Recuperação, saúde intestinal.',observacoes:'5g ao dia.'},
-    {codigo:'G006',nome:'Hipercalórico Mass Titanium 3kg',marca:'Growth',precoCusto:109.90,precoVenda:169.90,estoqueAtual:8,estoqueMin:2,unidade:'un',categoria:'Hipercalórico',descricao:'Hipercalórico com blend de carboidratos e proteínas.',beneficios:'Ganho de massa rápido.',observacoes:'2 doses ao dia.'},
-    {codigo:'G007',nome:'Termogênico 60 caps',marca:'Growth',precoCusto:44.90,precoVenda:74.90,estoqueAtual:35,estoqueMin:8,unidade:'un',categoria:'Termogênico',descricao:'Termogênico com extrato de canela e gengibre.',beneficios:'Metabolismo acelerado, queima de gordura.',observacoes:'1 cáps antes do treino.'},
-    {codigo:'G008',nome:'Multivitamínico 60 tabs',marca:'Growth',precoCusto:27.90,precoVenda:47.90,estoqueAtual:42,estoqueMin:10,unidade:'un',categoria:'Vitaminas',descricao:'Complexo vitamínico completo.',beneficios:'Saúde, energia, imunidade.',observacoes:'1 tablet ao dia.'},
-    {codigo:'G009',nome:'Ômega 3 60 caps',marca:'Growth',precoCusto:32.90,precoVenda:54.90,estoqueAtual:28,estoqueMin:7,unidade:'un',categoria:'Saúde',descricao:'Ômega 3 com EPA e DHA.',beneficios:'Coração, articulações, cérebro.',observacoes:'2 cáps ao dia.'},
-    {codigo:'G010',nome:'Albumina 500g',marca:'Growth',precoCusto:45.90,precoVenda:72.90,estoqueAtual:16,estoqueMin:4,unidade:'un',categoria:'Proteína',descricao:'Proteína de ovo de liberação lenta.',beneficios:'Anticatabólico noturno.',observacoes:'1 dose antes de dormir.'},
-    {codigo:'G011',nome:'ZMA 90 caps',marca:'Growth',precoCusto:36.90,precoVenda:59.90,estoqueAtual:22,estoqueMin:6,unidade:'un',categoria:'Vitaminas',descricao:'ZMA Growth com zinco, magnésio e B6.',beneficios:'Sono, recuperação.',observacoes:'3 cáps em jejum.'},
-    {codigo:'G012',nome:'Colágeno Hidrolisado 300g',marca:'Growth',precoCusto:38.90,precoVenda:62.90,estoqueAtual:20,estoqueMin:5,unidade:'un',categoria:'Saúde',descricao:'Colágeno tipo 1 e 3 hidrolisado.',beneficios:'Articulações, pele, cabelo.',observacoes:'10g ao dia com vitamina C.'},
-    {codigo:'G013',nome:'Barra de Proteína cx 12un',marca:'Growth',precoCusto:55.90,precoVenda:89.90,estoqueAtual:14,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra proteica com 20g de proteína.',beneficios:'Lanche prático e proteico.',observacoes:'1 unidade ao lanche.'},
-    // === INTEGRALMEDICA (13 produtos) ===
-    {codigo:'I001',nome:'Whey 100% Pure 900g',marca:'Integralmedica',precoCusto:88.90,precoVenda:132.90,estoqueAtual:22,estoqueMin:5,unidade:'un',categoria:'Proteína',descricao:'Whey concentrado com alta pureza proteica.',beneficios:'Ganho de massa, recuperação.',observacoes:'30g pós-treino.'},
-    {codigo:'I002',nome:'Creatina Hardcore 300g',marca:'Integralmedica',precoCusto:44.90,precoVenda:69.90,estoqueAtual:45,estoqueMin:12,unidade:'un',categoria:'Creatina',descricao:'Creatina monohidratada com qualidade premium.',beneficios:'Força, explosão, volume.',observacoes:'5g ao dia.'},
-    {codigo:'I003',nome:'BCAA 2400mg 100 tabs',marca:'Integralmedica',precoCusto:55.90,precoVenda:84.90,estoqueAtual:30,estoqueMin:7,unidade:'un',categoria:'Aminoácidos',descricao:'BCAA em tablete de fácil ingestão.',beneficios:'Anticatabólico, recuperação.',observacoes:'4 tabletes antes e após treino.'},
-    {codigo:'I004',nome:'Pré-Treino Devastate 300g',marca:'Integralmedica',precoCusto:79.90,precoVenda:119.90,estoqueAtual:14,estoqueMin:3,unidade:'un',categoria:'Pré-Treino',descricao:'Pré-treino avançado com nitrato e cafeína.',beneficios:'Máximo pump, foco total, resistência.',observacoes:'1 dose 30min antes. Não usar para iniciantes.'},
-    {codigo:'I005',nome:'Glutamina 300g',marca:'Integralmedica',precoCusto:36.90,precoVenda:61.90,estoqueAtual:26,estoqueMin:6,unidade:'un',categoria:'Aminoácidos',descricao:'Glutamina pura Integralmedica.',beneficios:'Recuperação, imunidade.',observacoes:'5g ao dia.'},
-    {codigo:'I006',nome:'Hipercalórico 3kg',marca:'Integralmedica',precoCusto:112.90,precoVenda:172.90,estoqueAtual:7,estoqueMin:2,unidade:'un',categoria:'Hipercalórico',descricao:'Hipercalórico com carbo e proteína para hardgainers.',beneficios:'Ganho de peso e massa.',observacoes:'2 doses por dia.'},
-    {codigo:'I007',nome:'Termogênico 60 caps',marca:'Integralmedica',precoCusto:46.90,precoVenda:76.90,estoqueAtual:32,estoqueMin:8,unidade:'un',categoria:'Termogênico',descricao:'Termogênico com grão de café verde.',beneficios:'Queima de gordura, metabolismo.',observacoes:'1 cáps antes do treino.'},
-    {codigo:'I008',nome:'Multivitamínico 60 tabs',marca:'Integralmedica',precoCusto:28.90,precoVenda:48.90,estoqueAtual:38,estoqueMin:10,unidade:'un',categoria:'Vitaminas',descricao:'Vitaminas e minerais completos.',beneficios:'Saúde geral, energia.',observacoes:'1 tablet ao dia.'},
-    {codigo:'I009',nome:'Ômega 3 60 caps',marca:'Integralmedica',precoCusto:33.90,precoVenda:55.90,estoqueAtual:24,estoqueMin:6,unidade:'un',categoria:'Saúde',descricao:'Cápsula de ômega 3 com alto teor de EPA/DHA.',beneficios:'Coração, articulações.',observacoes:'2 cáps ao dia.'},
-    {codigo:'I010',nome:'Albumina 500g',marca:'Integralmedica',precoCusto:47.90,precoVenda:75.90,estoqueAtual:18,estoqueMin:4,unidade:'un',categoria:'Proteína',descricao:'Clara de ovo desidratada.',beneficios:'Proteína lenta para o noturno.',observacoes:'Antes de dormir.'},
-    {codigo:'I011',nome:'ZMA 90 caps',marca:'Integralmedica',precoCusto:37.90,precoVenda:61.90,estoqueAtual:20,estoqueMin:5,unidade:'un',categoria:'Vitaminas',descricao:'Zinco, magnésio e B6.',beneficios:'Sono, recuperação, hormônios.',observacoes:'3 cáps em jejum.'},
-    {codigo:'I012',nome:'Colágeno 300g',marca:'Integralmedica',precoCusto:36.90,precoVenda:59.90,estoqueAtual:17,estoqueMin:4,unidade:'un',categoria:'Saúde',descricao:'Colágeno hidrolisado Integralmedica.',beneficios:'Articulações, pele, ossos.',observacoes:'10g ao dia.'},
-    {codigo:'I013',nome:'Barra Proteica cx 12un',marca:'Integralmedica',precoCusto:52.90,precoVenda:84.90,estoqueAtual:12,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra proteica com cobertura de chocolate.',beneficios:'Snack proteico, energia.',observacoes:'1 unidade ao lanche.'},
-    // === HERO NUTRITION (13 produtos) ===
-    {codigo:'H001',nome:'Psycho Whey 900g',marca:'Hero',precoCusto:95.90,precoVenda:145.90,estoqueAtual:16,estoqueMin:4,unidade:'un',categoria:'Proteína',descricao:'Whey protein premium da Hero Nutrition.',beneficios:'Hipertrofia acelerada, recuperação.',observacoes:'30g pós-treino.'},
-    {codigo:'H002',nome:'Pré-Treino Psycho 300g',marca:'Hero',precoCusto:82.90,precoVenda:124.90,estoqueAtual:14,estoqueMin:3,unidade:'un',categoria:'Pré-Treino',descricao:'Pré-treino intenso com beta-alanina e cafeína anidra.',beneficios:'Energia extrema, foco, pump.',observacoes:'1 dose 30min antes. Iniciantes usar meia dose.'},
-    {codigo:'H003',nome:'Creatina 300g',marca:'Hero',precoCusto:45.90,precoVenda:72.90,estoqueAtual:28,estoqueMin:7,unidade:'un',categoria:'Creatina',descricao:'Creatina monohidratada Hero.',beneficios:'Força, potência.',observacoes:'5g ao dia.'},
-    {codigo:'H004',nome:'BCAA Hero 300g',marca:'Hero',precoCusto:60.90,precoVenda:91.90,estoqueAtual:20,estoqueMin:5,unidade:'un',categoria:'Aminoácidos',descricao:'BCAA Hero Nutrition em pó.',beneficios:'Proteção muscular, recuperação.',observacoes:'10g antes e após treino.'},
-    {codigo:'H005',nome:'Glutamina 300g',marca:'Hero',precoCusto:38.90,precoVenda:63.90,estoqueAtual:22,estoqueMin:6,unidade:'un',categoria:'Aminoácidos',descricao:'Glutamina Hero pura.',beneficios:'Recuperação, imunidade.',observacoes:'5g ao dia.'},
-    {codigo:'H006',nome:'Hipercalórico 3kg',marca:'Hero',precoCusto:115.90,precoVenda:175.90,estoqueAtual:6,estoqueMin:2,unidade:'un',categoria:'Hipercalórico',descricao:'Hipercalórico Hero para ganho de massa.',beneficios:'Calorias e proteínas para ganho rápido.',observacoes:'2 doses ao dia fora do treino.'},
-    {codigo:'H007',nome:'Termogênico 60 caps',marca:'Hero',precoCusto:50.90,precoVenda:81.90,estoqueAtual:30,estoqueMin:8,unidade:'un',categoria:'Termogênico',descricao:'Termogênico Hero com cafeína e capsaicina.',beneficios:'Queima de gordura localizada.',observacoes:'1 cáps antes do treino.'},
-    {codigo:'H008',nome:'Multivitamínico 60 tabs',marca:'Hero',precoCusto:30.90,precoVenda:51.90,estoqueAtual:35,estoqueMin:9,unidade:'un',categoria:'Vitaminas',descricao:'Complexo vitamínico Hero completo.',beneficios:'Vitalidade, saúde, energia.',observacoes:'1 tablet ao dia.'},
-    {codigo:'H009',nome:'Ômega 3 60 caps',marca:'Hero',precoCusto:34.90,precoVenda:57.90,estoqueAtual:25,estoqueMin:6,unidade:'un',categoria:'Saúde',descricao:'Ômega 3 Hero com EPA e DHA.',beneficios:'Saúde cardiovascular.',observacoes:'2 cáps ao dia.'},
-    {codigo:'H010',nome:'Albumina 500g',marca:'Hero',precoCusto:48.90,precoVenda:76.90,estoqueAtual:14,estoqueMin:3,unidade:'un',categoria:'Proteína',descricao:'Albumina Hero Nutrition.',beneficios:'Proteína de liberação lenta.',observacoes:'1 dose antes de dormir.'},
-    {codigo:'H011',nome:'ZMA 90 caps',marca:'Hero',precoCusto:38.90,precoVenda:62.90,estoqueAtual:19,estoqueMin:5,unidade:'un',categoria:'Vitaminas',descricao:'ZMA Hero com zinco, magnésio e B6.',beneficios:'Sono, testosterona, recuperação.',observacoes:'3 cáps antes de dormir.'},
-    {codigo:'H012',nome:'Colágeno 300g',marca:'Hero',precoCusto:37.90,precoVenda:61.90,estoqueAtual:16,estoqueMin:4,unidade:'un',categoria:'Saúde',descricao:'Colágeno hidrolisado Hero.',beneficios:'Articulações, pele.',observacoes:'10g ao dia com vitamina C.'},
-    {codigo:'H013',nome:'Barra Proteica cx 12un',marca:'Hero',precoCusto:54.90,precoVenda:87.90,estoqueAtual:10,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra Hero com 20g de proteína.',beneficios:'Lanche proteico prático.',observacoes:'1 unidade ao lanche.'},
-    // === NEW MILLEN (13 produtos) ===
-    {codigo:'N001',nome:'Whey Dulce de Leche 900g',marca:'New Millen',precoCusto:85.90,precoVenda:128.90,estoqueAtual:19,estoqueMin:5,unidade:'un',categoria:'Proteína',descricao:'Whey New Millen sabor doce de leite.',beneficios:'Hipertrofia, sabor exclusivo.',observacoes:'30g pós-treino.'},
-    {codigo:'N002',nome:'Creatina 300g',marca:'New Millen',precoCusto:43.90,precoVenda:68.90,estoqueAtual:30,estoqueMin:7,unidade:'un',categoria:'Creatina',descricao:'Creatina New Millen monohidratada.',beneficios:'Força e explosão.',observacoes:'5g ao dia.'},
-    {codigo:'N003',nome:'BCAA 300g',marca:'New Millen',precoCusto:59.90,precoVenda:89.90,estoqueAtual:20,estoqueMin:5,unidade:'un',categoria:'Aminoácidos',descricao:'BCAA New Millen em pó sabor limão.',beneficios:'Anticatabólico, recuperação.',observacoes:'10g antes e após treino.'},
-    {codigo:'N004',nome:'Pré-Treino 300g',marca:'New Millen',precoCusto:72.90,precoVenda:112.90,estoqueAtual:14, estoqueMin:3,unidade:'un',categoria:'Pré-Treino',descricao:'Pré-treino New Millen com cafeína e arginina.',beneficios:'Energia e pump.',observacoes:'1 dose pré-treino.'},
-    {codigo:'N005',nome:'Glutamina 300g',marca:'New Millen',precoCusto:38.90,precoVenda:63.90,estoqueAtual:24,estoqueMin:6,unidade:'un',categoria:'Aminoácidos',descricao:'Glutamina New Millen.',beneficios:'Recuperação, imunidade.',observacoes:'5g ao dia.'},
-    {codigo:'N006',nome:'Hipercalórico 3kg',marca:'New Millen',precoCusto:110.90,precoVenda:170.90,estoqueAtual:8,estoqueMin:2,unidade:'un',categoria:'Hipercalórico',descricao:'Hipercalórico New Millen com carboidratos e proteínas.',beneficios:'Ganho de massa, caloria extra.',observacoes:'2 doses ao dia.'},
-    {codigo:'N007',nome:'Termogênico 60 caps',marca:'New Millen',precoCusto:46.90,precoVenda:76.90,estoqueAtual:28,estoqueMin:7,unidade:'un',categoria:'Termogênico',descricao:'Termogênico New Millen com extrato de guaraná.',beneficios:'Queima de gordura, energia.',observacoes:'1 cáps antes do treino.'},
-    {codigo:'N008',nome:'Multivitamínico 60 tabs',marca:'New Millen',precoCusto:28.90,precoVenda:48.90,estoqueAtual:40,estoqueMin:10,unidade:'un',categoria:'Vitaminas',descricao:'Multivitamínico New Millen.',beneficios:'Saúde geral.',observacoes:'1 tablet ao dia.'},
-    {codigo:'N009',nome:'Ômega 3 60 caps',marca:'New Millen',precoCusto:33.90,precoVenda:55.90,estoqueAtual:22,estoqueMin:5,unidade:'un',categoria:'Saúde',descricao:'Ômega 3 New Millen.',beneficios:'Coração e articulações.',observacoes:'2 cáps ao dia.'},
-    {codigo:'N010',nome:'Albumina 500g',marca:'New Millen',precoCusto:46.90,precoVenda:74.90,estoqueAtual:16,estoqueMin:4,unidade:'un',categoria:'Proteína',descricao:'Albumina New Millen.',beneficios:'Proteína noturna.',observacoes:'1 dose antes de dormir.'},
-    {codigo:'N011',nome:'ZMA 90 caps',marca:'New Millen',precoCusto:37.90,precoVenda:61.90,estoqueAtual:18,estoqueMin:5,unidade:'un',categoria:'Vitaminas',descricao:'ZMA New Millen.',beneficios:'Sono, hormônios.',observacoes:'3 cáps antes de dormir.'},
-    {codigo:'N012',nome:'Colágeno 300g',marca:'New Millen',precoCusto:36.90,precoVenda:59.90,estoqueAtual:15,estoqueMin:4,unidade:'un',categoria:'Saúde',descricao:'Colágeno hidrolisado New Millen.',beneficios:'Articulações, pele.',observacoes:'10g ao dia.'},
-    {codigo:'N013',nome:'Barra Proteica cx 12un',marca:'New Millen',precoCusto:53.90,precoVenda:85.90,estoqueAtual:11,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra New Millen com amendoim.',beneficios:'Lanche prático e proteico.',observacoes:'1 unidade ao lanche.'},
-    // === ADAPTOGEN (13 produtos) ===
-    {codigo:'A001',nome:'Whey Adaptogen 900g',marca:'Adaptogen',precoCusto:91.90,precoVenda:137.90,estoqueAtual:23,estoqueMin:6,unidade:'un',categoria:'Proteína',descricao:'Whey concentrado Adaptogen Science.',beneficios:'Ganho muscular, recuperação.',observacoes:'30g pós-treino.'},
-    {codigo:'A002',nome:'Creatina 300g',marca:'Adaptogen',precoCusto:44.90,precoVenda:69.90,estoqueAtual:32,estoqueMin:8,unidade:'un',categoria:'Creatina',descricao:'Creatina Adaptogen Science.',beneficios:'Força e volume muscular.',observacoes:'5g ao dia.'},
-    {codigo:'A003',nome:'BCAA 300g',marca:'Adaptogen',precoCusto:61.90,precoVenda:92.90,estoqueAtual:24,estoqueMin:6,unidade:'un',categoria:'Aminoácidos',descricao:'BCAA Adaptogen 2:1:1.',beneficios:'Proteção anticatabólica.',observacoes:'10g antes e após treino.'},
-    {codigo:'A004',nome:'Pré-Treino 300g',marca:'Adaptogen',precoCusto:74.90,precoVenda:114.90,estoqueAtual:16,estoqueMin:4,unidade:'un',categoria:'Pré-Treino',descricao:'Pré-treino Adaptogen com cafeína e L-arginina.',beneficios:'Foco e performance.',observacoes:'1 dose 30min antes.'},
-    {codigo:'A005',nome:'Glutamina 300g',marca:'Adaptogen',precoCusto:39.90,precoVenda:64.90,estoqueAtual:20,estoqueMin:5,unidade:'un',categoria:'Aminoácidos',descricao:'Glutamina Adaptogen pura.',beneficios:'Recuperação, imunidade.',observacoes:'5g ao dia.'},
-    {codigo:'A006',nome:'Hipercalórico 3kg',marca:'Adaptogen',precoCusto:113.90,precoVenda:173.90,estoqueAtual:7,estoqueMin:2,unidade:'un',categoria:'Hipercalórico',descricao:'Hipercalórico Adaptogen para ganho de massa.',beneficios:'Calorias e macros para crescer.',observacoes:'2 doses ao dia.'},
-    {codigo:'A007',nome:'Termogênico 60 caps',marca:'Adaptogen',precoCusto:47.90,precoVenda:77.90,estoqueAtual:28,estoqueMin:7,unidade:'un',categoria:'Termogênico',descricao:'Termogênico Adaptogen com chá verde.',beneficios:'Queima de gordura.',observacoes:'1 cáps antes do treino.'},
-    {codigo:'A008',nome:'Multivitamínico 60 tabs',marca:'Adaptogen',precoCusto:29.90,precoVenda:49.90,estoqueAtual:36,estoqueMin:9,unidade:'un',categoria:'Vitaminas',descricao:'Multivitamínico Adaptogen.',beneficios:'Vitaminas, minerais, energia.',observacoes:'1 tablet ao dia.'},
-    {codigo:'A009',nome:'Ômega 3 60 caps',marca:'Adaptogen',precoCusto:34.90,precoVenda:57.90,estoqueAtual:24,estoqueMin:6,unidade:'un',categoria:'Saúde',descricao:'Ômega 3 Adaptogen.',beneficios:'Saúde cardiovascular.',observacoes:'2 cáps ao dia.'},
-    {codigo:'A010',nome:'Albumina 500g',marca:'Adaptogen',precoCusto:47.90,precoVenda:75.90,estoqueAtual:15,estoqueMin:4,unidade:'un',categoria:'Proteína',descricao:'Albumina Adaptogen Science.',beneficios:'Proteína de lenta absorção.',observacoes:'1 dose antes de dormir.'},
-    {codigo:'A011',nome:'ZMA 90 caps',marca:'Adaptogen',precoCusto:38.90,precoVenda:62.90,estoqueAtual:17,estoqueMin:4,unidade:'un',categoria:'Vitaminas',descricao:'ZMA Adaptogen Science.',beneficios:'Sono, recuperação.',observacoes:'3 cáps antes de dormir.'},
-    {codigo:'A012',nome:'Colágeno 300g',marca:'Adaptogen',precoCusto:37.90,precoVenda:61.90,estoqueAtual:14,estoqueMin:3,unidade:'un',categoria:'Saúde',descricao:'Colágeno Adaptogen hidrolisado.',beneficios:'Articulações, pele.',observacoes:'10g ao dia.'},
-    {codigo:'A013',nome:'Barra Proteica cx 12un',marca:'Adaptogen',precoCusto:53.90,precoVenda:85.90,estoqueAtual:9,estoqueMin:3,unidade:'cx',categoria:'Proteína',descricao:'Barra proteica Adaptogen.',beneficios:'Lanche saudável e proteico.',observacoes:'1 unidade ao lanche.'}
   ],
   vendas: [],
   caixa: { dia: new Date().toISOString().split('T')[0], entradas: 0, saidas: 0 },
   logs: [],
-  proximoId: { produto: 79, venda: 1, usuario: 6 }
+  proximoId: { produto: 1, venda: 1, usuario: 6 }
 };
 
 // ===== ESTADO =====
@@ -376,13 +290,10 @@ function fazerLogin() {
   const user = document.getElementById('login-user').value.trim().toLowerCase();
   const pass = document.getElementById('login-pass').value;
 
-  // Suporta tanto o hash novo (usuario+senha+bearon) quanto a senha direta (compatibilidade)
-  const senhaHash = user + pass + 'bearon';
-  const usuario = DB.usuarios.find(u =>
-    u.usuario === user &&
-    (u.senha === senhaHash || u.senha === pass || u.senha === (pass + 'ccb40bearon2026').slice(0,60)) &&
-    u.ativo
-  );
+  // Senhas diretas (sem hash) para teste
+  const usuario = DB.usuarios.find(u => 
+    u.usuario === user && 
+    u.senha === pass + 'bearon' &&  // maria1234bear
 
   if (usuario) {
     usuarioLogado = usuario;
@@ -447,7 +358,7 @@ function navBar(telaAtual) {
   const isGestor = usuarioLogado.perfil === 'gestor';
   return `
     <header>
-      <div class="logo">🐻 StockPro v2.0</div>
+      <div class="logo">📦 Box | StandardBox</div>
       <nav>
         <button class="btn-nav ${telaAtual==='dashboard'?'active':''}" onclick="irPara('dashboard')">🏠 Dashboard</button>
         <button class="btn-nav ${telaAtual==='catalogo'?'active':''}" onclick="irPara('catalogo')">📋 Catálogo</button>
@@ -497,7 +408,7 @@ function renderDashboard() {
 
   return `
     ${navBar('dashboard')}
-    <div style="margin-bottom:12px;background:rgba(201,168,76,0.08);padding:12px 20px;border-radius:12px;color:var(--text);border:1px solid rgba(201,168,76,0.15);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+    <div style="margin-bottom:12px;background:rgba(37,99,235,0.08);padding:12px 20px;border-radius:12px;color:var(--text);border:1px solid rgba(37,99,235,0.15);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
       <span>👤 <strong>${usuarioLogado.nome}</strong> — ${usuarioLogado.perfil === 'gestor' ? '🔑 Gestor' : '👷 Funcionário'}</span>
       <span style="font-size:13px;opacity:0.9">${new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})}</span>
     </div>
@@ -506,7 +417,7 @@ function renderDashboard() {
       <div class="card stat"><div class="stat-value">${DB.produtos.length}</div><div class="stat-label">📦 Total Produtos</div></div>
       ${isGestor ? `<div class="card stat"><div class="stat-value" style="font-size:20px">${fmtMoeda(faturamentoHoje)}</div><div class="stat-label">💰 Faturamento Hoje</div></div>` : ''}
       ${isGestor ? `<div class="card stat"><div class="stat-value" style="font-size:20px">${fmtMoeda(totalEstoque)}</div><div class="stat-label">🏪 Valor em Estoque</div></div>` : ''}
-      <div class="card stat" style="cursor:pointer" onclick="irPara('vendas')"><div class="stat-value" style="color:var(--gold2)">${itensCarrinho}</div><div class="stat-label">🛒 Itens no Carrinho</div></div>
+      <div class="card stat" style="cursor:pointer" onclick="irPara('vendas')"><div class="stat-value" style="color:var(--primary2)">${itensCarrinho}</div><div class="stat-label">🛒 Itens no Carrinho</div></div>
       <div class="card stat"><div class="stat-value">${vendasHoje.length}</div><div class="stat-label">🧾 Vendas Hoje</div></div>
     </div>
     <div class="grid">
@@ -592,7 +503,7 @@ function renderCatalogo() {
               <div style="display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap">
                 <button class="btn-success" onclick="adicionarCarrinho('${p.codigo}')">🛒 Venda</button>
                 <button class="btn-warning" onclick="abrirMovEstoque('${p.codigo}')">📦 Estoque</button>
-                ${isGestor ? `<button class="btn-secondary" onclick="abrirModalProduto('${p.codigo}')">✏️</button>` : ''}
+                ${isGestor ? `<button class="btn-secondary" onclick="abrirModalProduto('${p.codigo}')">✏️</button><button class="btn-danger" onclick="removerProduto('${p.codigo}')" title="Remover produto">🗑️</button>` : ''}
               </div>
             </div>`).join('')}
       </div>
@@ -793,7 +704,7 @@ function abrirMovEstoque(codigo) {
     <h3>📦 Movimentação de Estoque</h3>
     <p style="color:var(--text2);margin-bottom:20px">${prod.nome} — <strong>${prod.marca}</strong></p>
     <div style="background:var(--card2);border-radius:12px;padding:14px;margin-bottom:20px;display:flex;gap:20px">
-      <div><div style="font-size:12px;color:var(--text2)">ATUAL</div><div style="font-size:24px;font-weight:800;color:var(--gold)">${prod.estoqueAtual}</div></div>
+      <div><div style="font-size:12px;color:var(--text2)">ATUAL</div><div style="font-size:24px;font-weight:800;color:var(--primary)">${prod.estoqueAtual}</div></div>
       <div><div style="font-size:12px;color:var(--text2)">MÍNIMO</div><div style="font-size:24px;font-weight:800;color:var(--warning)">${prod.estoqueMin}</div></div>
       <div><div style="font-size:12px;color:var(--text2)">UNIDADE</div><div style="font-size:24px;font-weight:800;color:var(--text)">${prod.unidade}</div></div>
     </div>
@@ -919,6 +830,19 @@ function salvarProduto(codigoExistente) {
   render();
 }
 
+
+// ===== REMOVER PRODUTO =====
+function removerProduto(codigo) {
+  const prod = DB.produtos.find(p => p.codigo === codigo);
+  if (!prod) return;
+  if (!confirm(\`Remover "${prod.nome}" do estoque?\n\nEsta ação não pode ser desfeita.\`)) return;
+  DB.produtos = DB.produtos.filter(p => p.codigo !== codigo);
+  adicionarLog('PRODUTO_REMOVIDO', { codigo, nome: prod.nome });
+  salvarCompleto();
+  render();
+  showToast(\`"${prod.nome}" removido do catálogo.\`, 'error');
+}
+
 function fecharModal(id) {
   document.getElementById(id).style.display = 'none';
 }
@@ -962,7 +886,7 @@ function renderRelatorios() {
       <div class="card">
         <h3>💰 Resumo Financeiro</h3>
         <div class="relatorio-card"><div style="font-size:13px;color:var(--text2)">TOTAL FATURADO</div><div style="font-size:28px;font-weight:800;color:var(--success)">${fmtMoeda(totalVendido)}</div></div>
-        <div class="relatorio-card"><div style="font-size:13px;color:var(--text2)">TOTAL VENDAS</div><div style="font-size:28px;font-weight:800;color:var(--gold)">${DB.vendas.length}</div></div>
+        <div class="relatorio-card"><div style="font-size:13px;color:var(--text2)">TOTAL VENDAS</div><div style="font-size:28px;font-weight:800;color:var(--primary)">${DB.vendas.length}</div></div>
         <div class="relatorio-card"><div style="font-size:13px;color:var(--text2)">TOTAL DESCONTOS</div><div style="font-size:28px;font-weight:800;color:var(--warning)">${fmtMoeda(totalDesconto)}</div></div>
       </div>
       <div class="card">
@@ -971,7 +895,7 @@ function renderRelatorios() {
           Object.entries(vendasPorForma).sort((a,b)=>b[1]-a[1]).map(([forma, val]) => `
             <div class="relatorio-card" style="display:flex;justify-content:space-between;align-items:center">
               <span style="font-weight:600">${forma}</span>
-              <span style="font-weight:800;color:var(--gold)">${fmtMoeda(val)}</span>
+              <span style="font-weight:800;color:var(--primary)">${fmtMoeda(val)}</span>
             </div>`).join('')}
       </div>
       <div class="card">
@@ -1137,7 +1061,7 @@ function exportPDF() {
   if (!conteudo) return;
   html2pdf().set({
     margin: 0.5,
-    filename: `StockPro-Bearon-${new Date().toISOString().split('T')[0]}.pdf`,
+    filename: `StandardBox-${new Date().toISOString().split('T')[0]}.pdf`,
     image: { type: 'jpeg', quality: 0.95 },
     html2canvas: { scale: 2, useCORS: true, logging: false },
     jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
@@ -1170,7 +1094,7 @@ function exportExcel() {
     XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(vendasData), 'Vendas');
   }
 
-  XLSX.writeFile(wb, `StockPro-Bearon-${new Date().toISOString().split('T')[0]}.xlsx`);
+  XLSX.writeFile(wb, `StandardBox-${new Date().toISOString().split('T')[0]}.xlsx`);
   showToast('Excel exportado com sucesso!');
   adicionarLog('EXPORT_EXCEL');
 }
@@ -1196,7 +1120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
   }
 
-  console.log('🚀 StockPro v2.0 Bearon Suplementos');
+  console.log('🚀 Box | StandardBox v2.0');
   console.log('✅ Total de produtos:', DB.produtos.length);
   console.log('Login: maria/1234 (gestor) | joao/1234 | ana/1234');
 });
