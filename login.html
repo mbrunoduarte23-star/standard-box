@@ -56,6 +56,15 @@
 
         <form id="login-form">
           <div class="form-group">
+  <label for="empresa" class="form-label">Empresa</label>
+  <select id="empresa" class="form-control" required>
+    <option value="">Selecione a empresa</option>
+
+    <option value="1">Standard</option>
+    <!-- opção por empresa do banco -->
+  </select>
+</div>
+          <div class="form-group">
             <label for="usuario" class="form-label">Usuário / E-mail</label>
             <input
               type="text"
@@ -91,18 +100,41 @@
   </div>
 
   <!-- Script de login básico (exemplo) -->
-  <script>
-    document.getElementById("login-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const usuario = document.getElementById("usuario").value;
-      const senha = document.getElementById("senha").value;
+<script>
+  document.getElementById("login-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const empresaId = document.getElementById("empresa").value;
+    const usuario   = document.getElementById("usuario").value;
+    const senha     = document.getElementById("senha").value;
 
-      // Aqui você chama seu backend (ex.: /api/login)
-      if (usuario && senha) {
-        alert("Login em desenvolvimento – redirecionando...");
-        // Em produção: window.location.href = "/dashboard.html";
+    if (!empresaId || !usuario || !senha) {
+      alert("Preencha empresa, usuário e senha.");
+      return;
+    }
+
+    try {
+      const resp = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          empresa_id: empresaId,
+          usuario: usuario,
+          senha: senha
+        })
+      });
+
+      if (!resp.ok) {
+        alert("Login inválido.");
+        return;
       }
-    });
-  </script>
+
+      // aqui você pode guardar token/empresa no storage ou cookie seguro
+      // e redirecionar para o sistema
+      window.location.href = "/index-2.html";
+    } catch (err) {
+      alert("Erro ao conectar com o servidor.");
+    }
+  });
+</script>
 </body>
 </html>
