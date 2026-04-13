@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>StandardBox — Bearon Suplementos</title>
+<title>StandardBox — Gestão corporativa</title>
 <meta name="theme-color" content="#0a0a0a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>
@@ -126,7 +126,7 @@ tr:hover td { background: var(--card2); }
   <div class="modal-box">
     <div class="login-logo">
       <h1>📦 StandardBox</h1>
-      <p>Bearon Suplementos — Montes Claros MG</p>
+      <p>Gestão corporativa</p>
     </div>
     <div class="input-group">
       <label>Usuário</label>
@@ -138,7 +138,7 @@ tr:hover td { background: var(--card2); }
     </div>
     <button class="btn-primary" onclick="fazerLogin()">Entrar no sistema</button>
     <div class="divider"></div>
-    <p style="text-align:center;font-size:12px;color:var(--text2)">bruno/1234 &nbsp;|&nbsp; talles/1234 &nbsp;|&nbsp; maria/1234</p>
+    <p style="text-align:center;font-size:12px;color:var(--text2)">Entre em contato com o administrador para criar conta</p>
   </div>
 </div>
 
@@ -158,29 +158,66 @@ tr:hover td { background: var(--card2); }
 <!-- CDNs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
+  
 <script>
-// ===== FIREBASE =====
-try {
-  firebase.initializeApp({
-    apiKey: "AIzaSyDxtBgdg9dPArhRiT3pQZ2n0VYMwlZexQI",
-    authDomain: "standardbox-ccb40.firebaseapp.com",
-    projectId: "standardbox-ccb40",
-    storageBucket: "standardbox-ccb40.firebasestorage.app",
-    messagingSenderId: "753178487994",
-    appId: "1:753178487994:web:4a75eb98a819f0f1efe683"
-  });
-  window._fbDB = firebase.firestore();
-  window._fbSalvar = d => window._fbDB.collection('standardbox').doc('dados').set(d).catch(e => console.log('Firebase erro:', e));
-  window._fbCarregar = () => window._fbDB.collection('standardbox').doc('dados').get().then(s => s.exists ? s.data() : null).catch(() => null);
-  console.log('✅ Firebase conectado!');
-} catch(e) {
-  window._fbSalvar = () => Promise.resolve();
-  window._fbCarregar = () => Promise.resolve(null);
+// chamadas para API na VPS (exemplos)
+async function apiCarregarDados() {
+  const resp = await fetch('/api/dados', { method: 'GET', credentials: 'include' });
+  if (!resp.ok) return null;
+  return await resp.json();
 }
 
+async function apiSalvarDados(dados) {
+  await fetch('/api/dados', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify(dados)
+  });
+}
+</script>
+  async function carregar() {
+  // 1) tenta API da VPS
+  try {
+    const data = await apiCarregarDados();
+    if (data) {
+      aplicarDados(data);
+      console.log('✅ VPS carregada:', DB.produtos.length, 'produtos,', DB.vendas.length, 'vendas');
+      return;
+    }
+  } catch(e) {
+    console.log('Erro ao carregar da VPS:', e);
+  }
+
+  // 2) se der erro, opcional: ainda pode ler localStorage como fallback
+  try {
+    const local = localStorage.getItem('standardbox_dados');
+    if (local) {
+      aplicarDados(JSON.parse(local));
+      console.log('✅ localStorage carregado (fallback)');
+    }
+  } catch(e) { console.log('Erro localStorage:', e); }
+
+  if (usuarioLogado) render();
+}
+
+function salvarCompleto() {
+  const extras = DB.usuarios.filter(u => u.id > 5);
+  const dados = {
+    vendas:         DB.vendas,
+    caixa:          DB.caixa,
+    logs:           DB.logs,
+    produtos:       DB.produtos,
+    proximoId:      DB.proximoId,
+    usuariosExtras: extras
+  };
+
+  // salva na VPS (principal)
+  apiSalvarDados(dados).catch(e => console.log('Erro ao salvar na VPS:', e));
+
+  // opcional: manter localStorage como cache
+  try { localStorage.setItem('standardbox_dados', JSON.stringify(dados)); } catch(e) {}
+}
 // ===== BANCO DE DADOS COMPLETO — 78 PRODUTOS =====
 const DB_INICIAL = {
   config: {
@@ -331,22 +368,6 @@ function carregar() {
     }
   } catch(e) { console.log('Erro localStorage:', e); }
 
-  // 2) Tenta Firebase em paralelo — se tiver dados mais recentes, atualiza
-  _fbCarregar().then(data => {
-    if (data) {
-      aplicarDados(data);
-      // Sincroniza de volta pro localStorage com dados do Firebase
-      try { localStorage.setItem('standardbox_dados', JSON.stringify(data)); } catch(e) {}
-      console.log('✅ Firebase sincronizado:', DB.vendas.length, 'vendas');
-    } else {
-      console.log('✅ Firebase vazio — usando dados locais');
-    }
-    if (usuarioLogado) render();
-  }).catch(() => {
-    console.log('Firebase indisponível — usando localStorage');
-  });
-}
-
 function salvarCompleto() {
   const extras = DB.usuarios.filter(u => u.id > 5);
   const dados = {
@@ -357,11 +378,6 @@ function salvarCompleto() {
     proximoId:      DB.proximoId,
     usuariosExtras: extras
   };
-  // Salva no localStorage (primário — sempre funciona)
-  try { localStorage.setItem('standardbox_dados', JSON.stringify(dados)); } catch(e) {}
-  // Salva no Firebase (secundário — sincroniza entre dispositivos)
-  _fbSalvar(dados);
-}
 
 // ===== UTILITÁRIOS =====
 function fmtMoeda(v) {
@@ -389,36 +405,36 @@ function adicionarLog(acao, detalhes = {}) {
   if (DB.logs.length > 500) DB.logs = DB.logs.slice(0, 500);
 }
 
-// ===== NORMALIZAR SENHAS (garante formato correto após carregar do Firebase) =====
-function normalizarSenhas() {
-  // Senhas fixas dos usuários padrão — sempre mantém sincronizado
-  const senhasPadrao = {
-    'maria':  'maria1234bearon',
-    'joao':   'joao1234bearon',
-    'ana':    'ana1234bearon',
-    'bruno':  'bruno1234bearon',
-    'talles': 'talles1234bearon'
-  };
-  DB.usuarios.forEach(u => {
-    if (senhasPadrao[u.usuario]) {
-      u.senha = senhasPadrao[u.usuario];
-    }
-  });
-}
-
-// ===== LOGIN / LOGOUT =====
-function fazerLogin() {
+async function fazerLogin() {
   const user = document.getElementById('login-user').value.trim().toLowerCase();
   const pass = document.getElementById('login-pass').value;
 
-  // Suporta tanto o hash novo (usuario+senha+bearon) quanto a senha direta (compatibilidade)
-  const senhaHash = user + pass + 'bearon';
-  const usuario = DB.usuarios.find(u =>
-    u.usuario === user &&
-    (u.senha === senhaHash || u.senha === pass || u.senha === (pass + 'ccb40bearon2026').slice(0,60)) &&
-    u.ativo
-  );
+  try {
+    const resp = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ usuario: user, senha: pass })
+    });
 
+    if (!resp.ok) {
+      showToast('Usuário ou senha inválidos', 'error');
+      document.getElementById('login-pass').value = '';
+      document.getElementById('login-pass').focus();
+      return;
+    }
+
+    const dadosSessao = await resp.json(); // deve vir usuário + empresa etc.
+    usuarioLogado = dadosSessao.usuario;   // ajusta ao formato da sua API
+
+    estado.tela = 'dashboard';
+    document.getElementById('modal-login').style.display = 'none';
+    render();
+    showToast(`Bem-vindo(a), ${usuarioLogado.nome}!`);
+    adicionarLog('LOGIN');
+  } catch (e) {
+    showToast('Erro ao conectar ao servidor', 'error');
+  }
+}
   if (usuario) {
     usuarioLogado = usuario;
     
@@ -1187,7 +1203,7 @@ function exportPDF() {
   if (!conteudo) return;
   html2pdf().set({
     margin: 0.5,
-    filename: `StandardBox-Bearon-${new Date().toISOString().split('T')[0]}.pdf`,
+    filename: `StandardBox-${new Date().toISOString().split('T')[0]}.pdf`,
     image: { type: 'jpeg', quality: 0.95 },
     html2canvas: { scale: 2, useCORS: true, logging: false },
     jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
@@ -1220,7 +1236,7 @@ function exportExcel() {
     XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(vendasData), 'Vendas');
   }
 
-  XLSX.writeFile(wb, `StandardBox-Bearon-${new Date().toISOString().split('T')[0]}.xlsx`);
+  XLSX.writeFile(wb, `StandardBox-${new Date().toISOString().split('T')[0]}.xlsx`);
   showToast('Excel exportado com sucesso!');
   adicionarLog('EXPORT_EXCEL');
 }
@@ -1246,7 +1262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
   }
 
-  console.log('🚀 StandardBox Bearon Suplementos');
+  console.log('🚀 StandardBox');
   console.log('✅ Total de produtos:', DB.produtos.length);
   console.log('Login: maria/1234 (gestor) | joao/1234 | ana/1234');
 });
