@@ -946,7 +946,7 @@ function montarUsuario(u) {
     id:             u.id,
     nome:           u.nome || u.login,
     usuario:        u.login,
-    perfil:         (u.role_empresa === 'admin' || u.role_global === 'admin') ? 'gestor' : 'funcionario',
+    perfil: u.perfil || 'funcionario',
     limiteDesconto: u.limite_desconto ?? 100,
     empresaId:      u.empresa_id,
   };
