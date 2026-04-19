@@ -952,11 +952,54 @@ function montarUsuario(u) {
   };
 }
 
-async function carregarDadosAPI() {
+async function apiCarregarDados() {
+  if (!usuarioLogado || !usuarioLogado.empresa_id) {
+    console.error('Sem empresa_id para carregar produtos');
+    return { produtos: [], proximoId: DB.proximoId, logs: [] };
+  }
+
   try {
-    const data = await apiCarregarDados();
-    if (data) { aplicarDados(data); salvarLocal(); }
-  } catch (e) {}
+    const resp = await fetch(`/api/produtos.php?empresa_id=${usuarioLogado.empresa_id}`);
+    if (!resp.ok) throw new Error('Erro ao buscar produtos');
+
+    const data = await resp.json();
+    if (data.ok && Array.isArray(data.produtos)) {
+      DB.produtos = data.produtos.map(p => ({
+        // adapta campos do banco para o que a tela espera
+        id:             p.id,
+        empresa_id:     p.empresa_id,
+        codigo:         p.codigo,
+        nome:           p.nome,
+        marca:          p.marca,
+        categoria:      p.categoria,
+        preco_custo:    parseFloat(p.preco_custo ?? 0),
+        preco_venda:    parseFloat(p.preco_venda ?? 0),
+        estoqueAtual:   p.estoque_atual ?? p.estoqueAtual ?? 0,
+        estoqueMinimo:  p.estoque_minimo ?? p.estoqueMinimo ?? 5,
+        unidade:        p.unidade ?? 'un',
+        descricao:      p.descricao ?? '',
+        beneficios:     p.beneficios ?? '',
+        observacoes:    p.observacoes ?? '',
+        ativo:         (p.ativo ?? 1) ? 1 : 0
+      }));
+    } else {
+      DB.produtos = [];
+    }
+
+    return {
+      produtos: DB.produtos,
+      proximoId: DB.proximoId,
+      logs: DB.logs
+    };
+  } catch (e) {
+    console.error('Erro em apiCarregarDados', e);
+    showToast('Erro ao carregar produtos da empresa', 'error');
+    return {
+      produtos: DB.produtos,
+      proximoId: DB.proximoId,
+      logs: DB.logs
+    };
+  }
 }
 
 /* =============================================
