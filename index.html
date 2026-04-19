@@ -1724,50 +1724,124 @@ function abrirModalProduto(codigo = null) {
   document.getElementById('modal-produto').classList.add('open');
 }
 
-function salvarProduto(codigoExistente) {
+async function salvarProduto(codigoExistente) {
   const nome = document.getElementById('mp-nome').value.trim();
   if (!nome) return showToast('Nome do produto é obrigatório', 'error');
+
+  if (!usuarioLogado || !usuarioLogado.empresa_id) {
+    return showToast('Empresa não identificada para o produto', 'error');
+  }
+
   const dados = {
     nome,
-    marca:        document.getElementById('mp-marca').value,
-    categoria:    document.getElementById('mp-cat').value,
-    precoCusto:   parseFloat(document.getElementById('mp-custo').value) || 0,
-    precoVenda:   parseFloat(document.getElementById('mp-venda').value) || 0,
-    unidade:      document.getElementById('mp-un').value,
-    estoqueAtual: parseInt(document.getElementById('mp-estq').value) || 0,
-    estoqueMin:   parseInt(document.getElementById('mp-min').value) || 5,
-    descricao:    document.getElementById('mp-desc').value,
-    beneficios:   document.getElementById('mp-benef').value,
-    observacoes:  document.getElementById('mp-obs').value,
-    ativo: true,
+    marca:         document.getElementById('mp-marca').value,
+    categoria:     document.getElementById('mp-cat').value,
+    preco_custo:   parseFloat(document.getElementById('mp-custo').value) || 0,
+    preco_venda:   parseFloat(document.getElementById('mp-venda').value) || 0,
+    unidade:       document.getElementById('mp-un').value,
+    estoque_atual: parseInt(document.getElementById('mp-estq').value) || 0,
+    estoque_minimo: parseInt(document.getElementById('mp-min').value) || 5,
+    descricao:     document.getElementById('mp-desc').value,
+    beneficios:    document.getElementById('mp-benef').value,
+    observacoes:   document.getElementById('mp-obs').value,
+    ativo: 1
   };
-  if (codigoExistente) {
-    const idx = DB.produtos.findIndex(p => p.codigo === codigoExistente);
-    if (idx >= 0) DB.produtos[idx] = { ...DB.produtos[idx], ...dados };
-    showToast('Produto atualizado!', 'success');
-    adicionarLog('PRODUTO_EDIT', { codigo: codigoExistente, nome });
-  } else {
-    const codigoInput = document.getElementById('mp-codigo').value.trim();
-    const novoCodigo = codigoInput || 'P' + String(DB.proximoId.produto++).padStart(3, '0');
-    DB.produtos.push({ codigo: novoCodigo, ...dados });
-    showToast(`Produto cadastrado! Código: ${novoCodigo}`, 'success');
-    adicionarLog('PRODUTO_NOVO', { codigo: novoCodigo, nome });
-  }
-  salvar();
-  fecharModal('modal-produto');
-  renderPagina();
-}
 
-function removerProduto(codigo) {
+  const prodExistente = codigoExistente
+    ? DB.produtos.find(p => p.codigo === codigoExistente)
+    : null;
+
+  const payload = {
+    empresa_id: usuarioLogado.empresa_id,
+    id: prodExistente?.id || 0,
+    codigo: codigoExistente || document.getElementById('mp-codigo').value.trim() || '',
+    ...dados
+  };
+
+  try {
+    const resp = await fetch('/api/produtos.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await resp.json();
+
+    if (!resp.ok || !data.ok) {
+      console.error('Erro ao salvar produto', data);
+      return showToast(data.mensagem || 'Erro ao salvar produto', 'error');
+    }
+
+    const codigoFinal = data.codigo || payload.codigo;
+
+    if (prodExistente) {
+      const idx = DB.produtos.findIndex(p => p.id === prodExistente.id);
+      if (idx >= 0) {
+        DB.produtos[idx] = {
+          ...DB.produtos[idx],
+          ...dados,
+          codigo: codigoFinal,
+          estoqueAtual: dados.estoque_atual,
+          estoqueMinimo: dados.estoque_minimo
+        };
+      }
+      showToast('Produto atualizado!', 'success');
+      adicionarLog('PRODUTO_EDIT', { codigo: codigoFinal, nome });
+    } else {
+      DB.produtos.push({
+        id: data.id,
+        empresa_id: usuarioLogado.empresa_id,
+        codigo: codigoFinal,
+        nome,
+        marca: dados.marca,
+        categoria: dados.categoria,
+        preco_custo: dados.preco_custo,
+        preco_venda: dados.preco_venda,
+        estoqueAtual: dados.estoque_atual,
+        estoqueMinimo: dados.estoque_minimo,
+        unidade: dados.unidade,
+        descricao: dados.descricao,
+        beneficios: dados.beneficios,
+        observacoes: dados.observacoes,
+        ativo: dados.ativo
+      });
+      showToast(`Produto cadastrado! Código: ${codigoFinal}`, 'success');
+      adicionarLog('PRODUTO_NOVO', { codigo: codigoFinal, nome });
+    }
+
+    fecharModal('modal-produto');
+    renderPagina();
+  } catch (e) {
+    console.error(e);
+    showToast('Erro de comunicação com o servidor ao salvar produto', 'error');
+  }
+}
+async function removerProduto(codigo) {
   if (usuarioLogado.perfil !== 'gestor') return showToast('Acesso restrito', 'error');
+
   const prod = DB.produtos.find(p => p.codigo === codigo);
   if (!prod) return;
+
   if (!confirm(`Remover "${prod.nome}"? Esta ação não pode ser desfeita.`)) return;
-  DB.produtos = DB.produtos.filter(p => p.codigo !== codigo);
-  adicionarLog('PRODUTO_REMOVIDO', { codigo, nome: prod.nome });
-  salvar();
-  renderPagina();
-  showToast(`${prod.nome} removido`, 'success');
+
+  try {
+    const resp = await fetch(`/api/produtos.php?id=${prod.id}&empresa_id=${usuarioLogado.empresa_id}`, {
+      method: 'DELETE'
+    });
+    const data = await resp.json();
+
+    if (!resp.ok || !data.ok) {
+      console.error('Erro ao remover produto', data);
+      return showToast(data.mensagem || 'Erro ao remover produto', 'error');
+    }
+
+    DB.produtos = DB.produtos.filter(p => p.id !== prod.id);
+    adicionarLog('PRODUTO_REMOVIDO', { codigo: prod.codigo, nome: prod.nome });
+    renderPagina();
+    showToast(`${prod.nome} removido`, 'success');
+  } catch (e) {
+    console.error(e);
+    showToast('Erro de comunicação com o servidor ao remover produto', 'error');
+  }
 }
 
 /* =============================================
