@@ -1024,7 +1024,20 @@ async function fazerLogin() {
   btn.textContent = 'Entrando...';
 
   try {
-    const data = await apiLogin(empresaId, login, senha);
+    // chama diretamente a API de login
+    const resp = await fetch('/api/login.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ empresa_id: empresaId, login, senha })
+    });
+
+    if (!resp.ok) {
+      alertEl.innerHTML = '<div class="alert alert-danger">Erro ao conectar ao servidor. Tente novamente.</div>';
+      return;
+    }
+
+    const data = await resp.json();
+    console.log('Login data:', data);
 
     if (!data.ok) {
       alertEl.innerHTML = `<div class="alert alert-danger">${data.mensagem || 'Usuário ou senha inválidos.'}</div>`;
@@ -1032,41 +1045,24 @@ async function fazerLogin() {
       return;
     }
 
-    usuarioLogado = montarUsuario(data.usuario);
-    await carregarDadosAPI();
+    // sucesso: monta usuarioLogado
+    usuarioLogado = montarUsuario ? montarUsuario(data.usuario) : data.usuario;
+
+    // carrega dados da empresa no banco
+    if (typeof carregarDadosAPI === 'function') {
+      await carregarDadosAPI();
+    }
+
     entrarNoApp();
-    adicionarLog('LOGIN');
+    adicionarLog && adicionarLog('LOGIN');
 
   } catch (e) {
+    console.error('Erro em fazerLogin', e);
     alertEl.innerHTML = '<div class="alert alert-danger">Erro ao conectar ao servidor. Tente novamente.</div>';
   } finally {
     btn.disabled = false;
     btn.textContent = 'Entrar no sistema';
   }
-}
-
-function entrarNoApp() {
-  document.getElementById('tela-login').style.display = 'none';
-  document.getElementById('app-shell').classList.add('visible');
-  atualizarSidebarUsuario();
-  construirNav();
-  navegar('dashboard');
-  showToast(`Bem-vindo(a), ${usuarioLogado.nome}!`, 'success');
-}
-
-async function logout() {
-  adicionarLog('LOGOUT');
-  salvar();
-  await apiLogout();
-  usuarioLogado = null;
-  estado = { tela: 'dashboard', carrinho: [], busca: '', filtroMarca: 'Todas', filtroCategoria: 'Todas', filtroProduto: '', filtroCategoriaProd: '', filtroMarcaProd: '', paginaProduto: 1, itensPorPagina: 10 };
-
-  document.getElementById('app-shell').classList.remove('visible');
-  document.getElementById('login-alert').innerHTML = '';
-  document.getElementById('login-user').value = '';
-  document.getElementById('login-pass').value = '';
-  document.getElementById('tela-login').style.display = 'flex';
-  showToast('Até logo!', 'success');
 }
 
 /* =============================================
