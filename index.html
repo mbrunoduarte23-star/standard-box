@@ -1005,10 +1005,7 @@ async function apiCarregarDados() {
 /* =============================================
    LOGIN / LOGOUT
    ============================================= */
-
 async function fazerLogin() {
-  console.log('[DEBUG] fazerLogin foi chamada');
-
   const empresaId = parseInt(document.getElementById('login-empresa').value, 10);
   const login     = document.getElementById('login-user').value.trim();
   const senha     = document.getElementById('login-pass').value;
@@ -1026,14 +1023,11 @@ async function fazerLogin() {
   btn.textContent = 'Entrando...';
 
   try {
-    console.log('[DEBUG] chamando fetch login.php', { empresaId, login });
     const resp = await fetch('/api/login.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ empresa_id: empresaId, login, senha })
     });
-
-    console.log('[DEBUG] resp.ok =', resp.ok);
 
     if (!resp.ok) {
       alertEl.innerHTML = '<div class="alert alert-danger">Erro ao conectar ao servidor. Tente novamente.</div>';
@@ -1041,7 +1035,6 @@ async function fazerLogin() {
     }
 
     const data = await resp.json();
-    console.log('[DEBUG] data =', data);
 
     if (!data.ok) {
       alertEl.innerHTML = `<div class="alert alert-danger">${data.mensagem || 'Usuário ou senha inválidos.'}</div>`;
@@ -1049,33 +1042,34 @@ async function fazerLogin() {
       return;
     }
 
-    console.log('[DEBUG] montando usuarioLogado');
-    usuarioLogado = montarUsuario ? montarUsuario(data.usuario) : data.usuario;
-    console.log('[DEBUG] usuarioLogado =', usuarioLogado);
+    // sucesso de login: usa retorno da API
+    usuarioLogado = {
+      id:             data.usuario.id,
+      empresa_id:     data.usuario.empresa_id,
+      nome:           data.usuario.nome,
+      usuario:        data.usuario.usuario,
+      perfil:         data.usuario.perfil,
+      role_global:    data.usuario.role_global,
+      limiteDesconto: data.usuario.limiteDesconto || 0
+    };
 
     if (typeof carregarDadosAPI === 'function') {
-      console.log('[DEBUG] chamando carregarDadosAPI');
       await carregarDadosAPI();
-      console.log('[DEBUG] carregarDadosAPI terminou');
     }
 
-    console.log('[DEBUG] chamando entrarNoApp');
     entrarNoApp();
-    console.log('[DEBUG] entrarNoApp terminou');
-
     if (typeof adicionarLog === 'function') {
       adicionarLog('LOGIN');
     }
 
   } catch (e) {
-    console.error('[DEBUG] Erro em fazerLogin', e);
+    console.error('Erro em fazerLogin', e);
     alertEl.innerHTML = '<div class="alert alert-danger">Erro ao conectar ao servidor. Tente novamente.</div>';
   } finally {
     btn.disabled = false;
     btn.textContent = 'Entrar no sistema';
   }
 }
-
 /* =============================================
    NAVEGAÇÃO E SHELL
    ============================================= */
